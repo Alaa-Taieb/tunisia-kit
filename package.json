@@ -1,0 +1,53 @@
+{
+  "name": "tunisia-kit",
+  "version": "0.1.0",
+  "description": "A type-safe, zero-dependency toolkit for validating and formatting Tunisian data (CIN, phone, RIB, IBAN, currency, license plates)",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./validators": {
+      "types": "./dist/validators/index.d.ts",
+      "import": "./dist/validators/index.js"
+    },
+    "./formatters": {
+      "types": "./dist/formatters/index.d.ts",
+      "import": "./dist/formatters/index.js"
+    },
+    "./data": {
+      "types": "./dist/data/index.d.ts",
+      "import": "./dist/data/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "coverage": "vitest run --coverage"
+  },
+  "keywords": [
+    "tunisia",
+    "tunisian",
+    "validation",
+    "cin",
+    "rib",
+    "phone",
+    "currency",
+    "tnd",
+    "governorates"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@vitest/coverage-v8": "^2.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^2.0.0"
+  }
+}

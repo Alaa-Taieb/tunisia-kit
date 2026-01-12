@@ -1,0 +1,20 @@
+// vitest.config.ts
+import { defineConfig } from "file:///C:/Users/SETUP/Desktop/My%20Projects/tunisia-kit/node_modules/vitest/dist/config.js";
+var vitest_config_default = defineConfig({
+  test: {
+    coverage: {
+      provider: "v8",
+      reporter: ["text", "json", "html"],
+      thresholds: {
+        lines: 100,
+        functions: 100,
+        branches: 100,
+        statements: 100
+      }
+    }
+  }
+});
+export {
+  vitest_config_default as default
+};
+//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsidml0ZXN0LmNvbmZpZy50cyJdLAogICJzb3VyY2VzQ29udGVudCI6IFsiY29uc3QgX192aXRlX2luamVjdGVkX29yaWdpbmFsX2Rpcm5hbWUgPSBcIkM6XFxcXFVzZXJzXFxcXFNFVFVQXFxcXERlc2t0b3BcXFxcTXkgUHJvamVjdHNcXFxcdHVuaXNpYS1raXRcIjtjb25zdCBfX3ZpdGVfaW5qZWN0ZWRfb3JpZ2luYWxfZmlsZW5hbWUgPSBcIkM6XFxcXFVzZXJzXFxcXFNFVFVQXFxcXERlc2t0b3BcXFxcTXkgUHJvamVjdHNcXFxcdHVuaXNpYS1raXRcXFxcdml0ZXN0LmNvbmZpZy50c1wiO2NvbnN0IF9fdml0ZV9pbmplY3RlZF9vcmlnaW5hbF9pbXBvcnRfbWV0YV91cmwgPSBcImZpbGU6Ly8vQzovVXNlcnMvU0VUVVAvRGVza3RvcC9NeSUyMFByb2plY3RzL3R1bmlzaWEta2l0L3ZpdGVzdC5jb25maWcudHNcIjtpbXBvcnQgeyBkZWZpbmVDb25maWcgfSBmcm9tICd2aXRlc3QvY29uZmlnJztcclxuXHJcbmV4cG9ydCBkZWZhdWx0IGRlZmluZUNvbmZpZyh7XHJcbiAgICB0ZXN0OiB7XHJcbiAgICAgICAgY292ZXJhZ2U6IHtcclxuICAgICAgICAgICAgcHJvdmlkZXI6ICd2OCcsXHJcbiAgICAgICAgICAgIHJlcG9ydGVyOiBbJ3RleHQnLCAnanNvbicsICdodG1sJ10sXHJcbiAgICAgICAgICAgIHRocmVzaG9sZHM6IHtcclxuICAgICAgICAgICAgICAgIGxpbmVzOiAxMDAsXHJcbiAgICAgICAgICAgICAgICBmdW5jdGlvbnM6IDEwMCxcclxuICAgICAgICAgICAgICAgIGJyYW5jaGVzOiAxMDAsXHJcbiAgICAgICAgICAgICAgICBzdGF0ZW1lbnRzOiAxMDBcclxuICAgICAgICAgICAgfVxyXG4gICAgICAgIH1cclxuICAgIH1cclxufSk7XHJcbiJdLAogICJtYXBwaW5ncyI6ICI7QUFBOFUsU0FBUyxvQkFBb0I7QUFFM1csSUFBTyx3QkFBUSxhQUFhO0FBQUEsRUFDeEIsTUFBTTtBQUFBLElBQ0YsVUFBVTtBQUFBLE1BQ04sVUFBVTtBQUFBLE1BQ1YsVUFBVSxDQUFDLFFBQVEsUUFBUSxNQUFNO0FBQUEsTUFDakMsWUFBWTtBQUFBLFFBQ1IsT0FBTztBQUFBLFFBQ1AsV0FBVztBQUFBLFFBQ1gsVUFBVTtBQUFBLFFBQ1YsWUFBWTtBQUFBLE1BQ2hCO0FBQUEsSUFDSjtBQUFBLEVBQ0o7QUFDSixDQUFDOyIsCiAgIm5hbWVzIjogW10KfQo=
