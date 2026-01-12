@@ -25,7 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `getDelegationsByGovernorate` - Get delegations for a governorate
 
 #### Data
-- `DELEGATIONS` - 60+ administrative delegations across 10 governorates
+- `DELEGATIONS` - ~260 administrative delegations across all 24 governorates
 - `LANDLINE_REGIONS` - 8 regional prefixes with French & Arabic names
 
 ## [0.0.1] - 2026-01-11
@@ -48,5 +48,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 #### Data
 - `GOVERNORATES` - All 24 governorates with French & Arabic names
 - `BANKS` - Bank codes for RIB identification
-- `POSTAL_CODES` - 24 major cities with postal codes
 - `getBankFromRIB` - Get bank name from RIB

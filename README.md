@@ -123,10 +123,9 @@ getDelegationsByGovernorate(1); // Returns delegations for Tunis
 | Export | Description |
 |--------|-------------|
 | `GOVERNORATES` | All 24 governorates (id, name_fr, name_ar) |
-| `DELEGATIONS` | Administrative delegations with governorate mapping |
-| `BANKS` | Bank codes for RIB identification |
-| `POSTAL_CODES` | Major cities with postal codes |
-| `LANDLINE_REGIONS` | Landline prefix to region mapping |
+| `DELEGATIONS` | ~260 administrative delegations across all 24 governorates |
+| `BANKS` | 21 bank codes for RIB identification |
+| `LANDLINE_REGIONS` | 8 landline prefixes with region mapping |
 
 ## Phone Prefixes
 

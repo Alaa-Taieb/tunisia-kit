@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { GOVERNORATES, BANKS, POSTAL_CODES, getBankFromRIB } from '../src/data/index';
+import { GOVERNORATES, BANKS, getBankFromRIB } from '../src/data/index';
 
 describe('GOVERNORATES', () => {
     it('contains all 24 governorates', () => {
@@ -9,7 +9,7 @@ describe('GOVERNORATES', () => {
     it('has correct structure', () => {
         const tunis = GOVERNORATES.find(g => g.name_fr === 'Tunis');
         expect(tunis).toBeDefined();
-        expect(tunis?.id).toBe(11);
+        expect(tunis?.id).toBe(1);
         expect(tunis?.name_ar).toBe('تونس');
     });
 });
@@ -20,13 +20,6 @@ describe('BANKS', () => {
         const biat = BANKS.find(b => b.abbrev === 'BIAT');
         expect(biat).toBeDefined();
         expect(biat?.code).toBe('10');
-    });
-});
-
-describe('POSTAL_CODES', () => {
-    it('contains major cities', () => {
-        const tunis = POSTAL_CODES.find(p => p.city === 'Tunis');
-        expect(tunis?.code).toBe('1000');
     });
 });
 

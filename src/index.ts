@@ -26,7 +26,6 @@ export {
 export {
     GOVERNORATES,
     BANKS,
-    POSTAL_CODES,
     DELEGATIONS,
     LANDLINE_REGIONS,
     getBankFromRIB,
@@ -34,7 +33,6 @@ export {
     getRegionFromLandline,
     type Governorate,
     type Bank,
-    type PostalCode,
     type Delegation,
     type LandlineRegion
 } from './data/index.js';

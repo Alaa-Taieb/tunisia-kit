@@ -27,7 +27,6 @@
 
 ### Module C: Static Data (`/data`)
 - [x] `GOVERNORATES` - All 24 governorates (French & Arabic)
-- [x] `POSTAL_CODES` - City to postal code mappings
 - [x] `BANKS` - Bank codes for RIB identification (e.g., 12 = BIAT)
 - [x] `getBankFromRIB(rib)` - Identify bank from RIB code
 
@@ -51,9 +50,8 @@
 - [ ] `getBranchFromRIB(rib)` - Get bank branch info from RIB *(Deferred)*
 
 ### Module D: Data Expansion
-- [x] `DELEGATIONS` - All delegations with governorate mapping
-- [x] `LANDLINE_REGIONS` - Prefix to region name mapping
-- [ ] Expanded `POSTAL_CODES` - 50+ major cities *(Deferred)*
+- [x] `DELEGATIONS` - All delegations with governorate mapping (~260 entries)
+- [x] `LANDLINE_REGIONS` - Prefix to region name mapping (8 regions)
 
 
 ## Non-Goals
