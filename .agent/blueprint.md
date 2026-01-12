@@ -33,27 +33,28 @@
 
 ---
 
-## v2.0 Features
+## v2.0 Features ✅
 
 ### Module A: New Validators
-- [ ] `isValidIBAN(iban)` - Validate 24-character Tunisian IBAN (ISO 7064)
-- [ ] `isValidLandline(phone)` - Validate landline numbers (7x prefix, region detection)
-- [ ] `isValidLicensePlate(plate)` - Validate standard Tunisian license plates
+- [x] `isValidIBAN(iban)` - Validate 24-character Tunisian IBAN (ISO 7064)
+- [x] `isValidLandline(phone)` - Validate landline numbers (7x prefix, region detection)
+- [x] `isValidLicensePlate(plate)` - Validate standard Tunisian license plates
 
 ### Module B: New Formatters
-- [ ] `formatIBAN(iban)` - Format IBAN in groups of 4 characters
-- [ ] `formatLandline(phone)` - Format landline to `71 XXX XXX`
-- [ ] `formatLandlineIntl(phone)` - Format landline to `+216 71 XXX XXX`
+- [x] `formatIBAN(iban)` - Format IBAN in groups of 4 characters
+- [x] `formatLandline(phone)` - Format landline to `71 XXX XXX`
+- [x] `formatLandlineIntl(phone)` - Format landline to `+216 71 XXX XXX`
 
 ### Module C: New Utilities
-- [ ] `ribToIBAN(rib)` - Convert 20-digit RIB to 24-character IBAN
-- [ ] `getRegionFromLandline(phone)` - Identify region from landline prefix
-- [ ] `getBranchFromRIB(rib)` - Get bank branch info from RIB
+- [x] `ribToIBAN(rib)` - Convert 20-digit RIB to 24-character IBAN
+- [x] `getRegionFromLandline(phone)` - Identify region from landline prefix
+- [ ] `getBranchFromRIB(rib)` - Get bank branch info from RIB *(Deferred)*
 
 ### Module D: Data Expansion
-- [ ] `DELEGATIONS` - All delegations with governorate mapping
-- [ ] `LANDLINE_REGIONS` - Prefix to region name mapping
-- [ ] Expanded `POSTAL_CODES` - 50+ major cities
+- [x] `DELEGATIONS` - All delegations with governorate mapping
+- [x] `LANDLINE_REGIONS` - Prefix to region name mapping
+- [ ] Expanded `POSTAL_CODES` - 50+ major cities *(Deferred)*
+
 
 ## Non-Goals
 

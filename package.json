@@ -24,27 +24,56 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "build": "tsc",
     "test": "vitest run",
     "test:watch": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "prepublishOnly": "npm run build && npm test"
   },
   "keywords": [
     "tunisia",
     "tunisian",
     "validation",
+    "validator",
+    "formatter",
     "cin",
     "rib",
+    "iban",
     "phone",
+    "landline",
     "currency",
     "tnd",
-    "governorates"
+    "governorates",
+    "delegations",
+    "license-plate",
+    "matricule",
+    "passport",
+    "bank",
+    "north-africa",
+    "arabic"
   ],
-  "author": "",
+  "author": {
+    "name": "Alaa Taieb",
+    "email": "alaataieb.tn@gmail.com",
+    "url": "https://www.alaataieb.com"
+  },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alaa-Taieb/tunisia-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Alaa-Taieb/tunisia-kit/issues"
+  },
+  "homepage": "https://github.com/Alaa-Taieb/tunisia-kit#readme",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "devDependencies": {
     "@vitest/coverage-v8": "^2.0.0",
     "typescript": "^5.0.0",

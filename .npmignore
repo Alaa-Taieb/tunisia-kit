@@ -1,0 +1,35 @@
+# Source files (we publish dist/)
+src/
+
+# Tests
+tests/
+*.test.ts
+vitest.config.ts
+vitest.config.ts.timestamp-*
+
+# Config files
+tsconfig.json
+.gitignore
+
+# Development files
+.agent/
+node_modules/
+coverage/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Misc
+.env
+.env.*
