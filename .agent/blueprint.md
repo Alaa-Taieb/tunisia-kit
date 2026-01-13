@@ -53,6 +53,12 @@
 - [x] `DELEGATIONS` - All delegations with governorate mapping (~260 entries)
 - [x] `LANDLINE_REGIONS` - Prefix to region name mapping (8 regions)
 
+## Quality Standards & Versioning
+
+- **SemVer Compliance**: Adherence to `MAJOR.MINOR.PATCH` versioning rules.
+- **Decision Journaling**: Every major architecture or data decision is logged in `.agent/journal.md`.
+- **Zero-Dependency**: Strict enforcement of no external runtime dependencies.
+- **100% Test Coverage**: All new validators and formatters must be fully tested.
 
 ## Non-Goals
 

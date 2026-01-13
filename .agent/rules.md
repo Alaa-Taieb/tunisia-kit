@@ -9,6 +9,41 @@
 - [x] Package Manager: npm (or yarn)
 - [x] License: MIT
 
+## Versioning
+
+This project follows **[Semantic Versioning (SemVer)](https://semver.org/)** with the format `MAJOR.MINOR.PATCH`.
+
+### Version Bump Guidelines
+
+| Change Type | Version Bump | Examples |
+|-------------|--------------|----------|
+| **Breaking changes** | MAJOR (X.0.0) | Removing a function, changing function signatures, renaming exports |
+| **New features** | MINOR (0.X.0) | Adding new validators, formatters, or data sets |
+| **Bug fixes/patches** | PATCH (0.0.X) | Fixing validation logic, correcting data, documentation updates |
+
+### Pre-Release Versions
+
+- Use `-alpha.X`, `-beta.X`, or `-rc.X` suffixes for pre-release versions
+- Example: `2.0.0-beta.1` for v2.0 beta testing
+
+### Changelog Requirements
+
+1. **Always update** `CHANGELOG.md` before any release
+2. Follow the **[Keep a Changelog](https://keepachangelog.com/)** format
+3. Group changes under: `Added`, `Changed`, `Deprecated`, `Removed`, `Fixed`, `Security`
+4. Include the release date in ISO format: `## [1.2.0] - 2026-01-15`
+
+### Release Process
+
+1. [ ] Ensure all tests pass: `npm test`
+2. [ ] Verify build succeeds: `npm run build`
+3. [ ] Update version in `package.json`
+4. [ ] Update `CHANGELOG.md` with new version section
+5. [ ] Commit with message: `chore: release vX.X.X`
+6. [ ] Create git tag: `git tag vX.X.X`
+7. [ ] Push with tags: `git push && git push --tags`
+8. [ ] Publish to npm: `npm publish`
+
 ## Directory Structure
 
 ```
