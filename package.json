@@ -1,6 +1,6 @@
 {
   "name": "tunisia-kit",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A type-safe, zero-dependency toolkit for validating and formatting Tunisian data (CIN, phone, RIB, IBAN, currency, license plates)",
   "type": "module",
   "main": "./dist/index.cjs",
