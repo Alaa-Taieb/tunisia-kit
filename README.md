@@ -1,15 +1,59 @@
 # tunisia-kit 🇹🇳
 
+> 🇫🇷 Version française disponible — [README.fr.md](./README.fr.md)
+
 A type-safe, zero-dependency toolkit for validating and formatting Tunisian data.
 
-[![npm version](https://img.shields.io/npm/v/tunisia-kit.svg)](https://www.npmjs.com/package/tunisia-kit)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen.svg)](https://github.com/Alaa-Taieb/tunisia-kit)
+[![npm version](https://img.shields.io/npm/v/tunisia-kit.svg?color=DC1F26)](https://www.npmjs.com/package/tunisia-kit)
+[![npm downloads](https://img.shields.io/npm/dm/tunisia-kit.svg?color=DC1F26)](https://www.npmjs.com/package/tunisia-kit)
+[![License: MIT](https://img.shields.io/badge/License-MIT-DC1F26.svg)](https://opensource.org/licenses/MIT)
+[![Coverage](https://img.shields.io/badge/coverage-100%25-DC1F26.svg)](https://github.com/Alaa-Taieb/tunisia-kit)
+[![minzipped](https://img.shields.io/bundlephobia/minzip/tunisia-kit.svg?color=DC1F26)](https://bundlephobia.com/package/tunisia-kit)
+[![TypeScript](https://img.shields.io/badge/TypeScript-100%25-DC1F26.svg)](https://www.typescriptlang.org/)
+[![Tree-shakeable](https://img.shields.io/badge/tree--shakeable-%E2%9C%93-DC1F26.svg)](https://github.com/Alaa-Taieb/tunisia-kit)
+[![Zero dependencies](https://img.shields.io/badge/dependencies-0-DC1F26.svg)](https://github.com/Alaa-Taieb/tunisia-kit)
+
+## Table of Contents
+
+- [Why tunisia-kit?](#why-tunisia-kit)
+- [Features](#features)
+- [Installation](#installation)
+- [Quick Examples](#quick-examples)
+  - [Validators](#validators)
+  - [Formatters](#formatters)
+  - [Utilities](#utilities)
+  - [Static Data](#static-data)
+- [API Reference](#api-reference)
+- [Phone Prefixes](#phone-prefixes)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Why tunisia-kit?
+
+- **Zero runtime dependencies** — nothing extra ships to your users.
+- **Fully typed** — written in TypeScript, with types exported for every value.
+- **Accurate rules** — RIB uses Modulo 97; IBAN uses ISO 7064; postal codes and prefixes follow real Tunisian formats.
+- **100% test coverage** — every validator, formatter, and lookup is tested.
+- **Bilingual** — French and Arabic labels for governorates and delegations, out of the box.
+- **Tree-shakeable** — `sideEffects: false` means unused exports are dropped from your bundle.
+
+## Features
+
+| | |
+| --- | --- |
+| ✅ **Validators** | CIN, phone, landline, RIB, IBAN, matricule, passport, license plate, postal code |
+| 🔁 **Formatters** | Phone, landline, IBAN, currency (FR + AR), CIN — with Arabic-Indic digits |
+| 🗂️ **Static Data** | 24 governorates, ~260 delegations, banks, landline regions, postal ranges |
+| 🇫🇷🇹🇳 **Bilingual** | French & Arabic labels for governorates and delegations |
+| 🪶 **Zero-dep & tiny** | No runtime dependencies, tree-shakeable, side-effect free |
+| 🧪 **Fully tested** | 100% test coverage, fully typed TypeScript |
 
 ## Installation
 
 ```bash
 npm install tunisia-kit
+# or
+yarn add tunisia-kit
 # or
 pnpm add tunisia-kit
 # or via CDN (ESM)
@@ -17,6 +61,8 @@ pnpm add tunisia-kit
 ```
 
 ## Quick Examples
+
+A few common use cases to get you started.
 
 ### Validating User Input
 
@@ -195,6 +241,14 @@ getDelegationsByGovernorate(1); // Returns delegations for Tunis
 - **78**: Northwest (Béja, Jendouba)
 - **79**: Grand Tunis
 
+## Contributing
+
+Contributions are welcome! Please read [CONTRIBUTING.md](./CONTRIBUTING.md) before opening a pull request — it covers the setup, testing, and conventions used in this project.
+
 ## License
 
 MIT © 2026
+
+---
+
+Made for Tunisian developers, with ❤️ and 🇹🇳.
