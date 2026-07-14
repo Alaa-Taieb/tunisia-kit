@@ -24,6 +24,7 @@ Thank you for your interest in contributing to tunisia-kit! 🇹🇳
 ### Making Changes
 
 1. Create a new branch:
+
    ```bash
    git checkout -b feature/your-feature-name
    ```
@@ -37,6 +38,7 @@ Thank you for your interest in contributing to tunisia-kit! 🇹🇳
 3. Add tests for your changes in the `tests/` directory
 
 4. Run tests and ensure they pass:
+
    ```bash
    npm test
    ```
@@ -49,6 +51,7 @@ Thank you for your interest in contributing to tunisia-kit! 🇹🇳
 ### Commit Messages
 
 Use clear, descriptive commit messages:
+
 - `feat: add isValidCNSS validator`
 - `fix: correct IBAN check digit calculation`
 - `docs: update README with new examples`
@@ -81,6 +84,14 @@ src/
 - Functions: `camelCase`
 - Constants: `SCREAMING_SNAKE_CASE`
 - Types/Interfaces: `PascalCase`
+
+### Return-value Convention
+
+- **Lookups that can miss return `null`**, never `undefined`. This applies to
+  `getBankFromRIB`, `getBankFromIBAN`, `getRegionFromLandline`,
+  `getGovernorateFromPostalCode`, `getGovernorateFromDelegation`, and
+  `getDelegationByName`. (Name-based `getDelegationByName` returns `undefined`
+  only because it mirrors `Array.find` semantics.)
 
 ### Testing
 

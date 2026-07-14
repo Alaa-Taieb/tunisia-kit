@@ -1,26 +1,32 @@
 {
   "name": "tunisia-kit",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A type-safe, zero-dependency toolkit for validating and formatting Tunisian data (CIN, phone, RIB, IBAN, currency, license plates)",
   "type": "module",
-  "main": "./dist/index.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "sideEffects": false,
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
     },
     "./validators": {
       "types": "./dist/validators/index.d.ts",
-      "import": "./dist/validators/index.js"
+      "import": "./dist/validators/index.js",
+      "require": "./dist/validators/index.cjs"
     },
     "./formatters": {
       "types": "./dist/formatters/index.d.ts",
-      "import": "./dist/formatters/index.js"
+      "import": "./dist/formatters/index.js",
+      "require": "./dist/formatters/index.cjs"
     },
     "./data": {
       "types": "./dist/data/index.d.ts",
-      "import": "./dist/data/index.js"
+      "import": "./dist/data/index.js",
+      "require": "./dist/data/index.cjs"
     }
   },
   "files": [
@@ -29,10 +35,13 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
     "coverage": "vitest run --coverage",
+    "lint": "eslint .",
+    "format": "prettier --write .",
     "prepublishOnly": "npm run build && npm test"
   },
   "keywords": [
@@ -54,6 +63,7 @@
     "matricule",
     "passport",
     "bank",
+    "postal-code",
     "north-africa",
     "arabic"
   ],
@@ -75,8 +85,13 @@
     "node": ">=16.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.0.0",
     "@vitest/coverage-v8": "^2.0.0",
+    "eslint": "^9.0.0",
+    "prettier": "^3.0.0",
+    "tsup": "^8.0.0",
     "typescript": "^5.0.0",
+    "typescript-eslint": "^8.0.0",
     "vitest": "^2.0.0"
   }
 }

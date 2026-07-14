@@ -21,6 +21,9 @@ npm-debug.log*
 # Test coverage
 coverage/
 
+# Vitest temp config timestamp files
+vitest.config.ts.timestamp-*.mjs
+
 # Environment
 .env
 .env.local

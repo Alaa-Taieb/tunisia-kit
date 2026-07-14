@@ -3,12 +3,14 @@
 ## Visual Language
 
 ### Color Palette (for README badges/docs)
+
 - **Primary**: `#DC1F26` - Tunisian flag red, used for branding
 - **Secondary**: `#FFFFFF` - Clean white for backgrounds
 - **Accent**: `#E70013` - Highlight/interactive elements
 - **Text**: `#1F2937` - Dark gray for readability
 
 ### Typography
+
 - **Documentation**: System fonts, clean sans-serif
 - **Code Examples**: Monospace (Fira Code, JetBrains Mono)
 
@@ -20,13 +22,13 @@
 
 ### Style Guidelines
 
-- **Do**: 
+- **Do**:
   - Provide copy-paste ready examples
   - Use TypeScript in all code samples
   - Be concise—every word should earn its place
   - Include realistic Tunisian data in examples
-  
-- **Don't**: 
+
+- **Don't**:
   - Over-explain basic concepts
   - Use placeholder data like "12345678"—use realistic formats
   - Add unnecessary dependencies for "convenience"
@@ -37,11 +39,11 @@
 - **Error Messages**: Clear, actionable, with the exact issue
   - ✅ `"Invalid CIN: must be exactly 8 digits"`
   - ❌ `"Validation failed"`
-  
+
 - **Success Messages**: Simple boolean return, no celebration needed
   - Functions return `true/false`—let the developer decide what to do
 
-- **Documentation**: 
+- **Documentation**:
   - Lead with usage examples, not API reference
   - Show the problem first, then the solution
   - Include "Why" section to build trust

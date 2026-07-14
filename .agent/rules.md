@@ -3,7 +3,7 @@
 ## Tech Stack
 
 - [x] Language: TypeScript 5.0+
-- [x] Build: TSC with ES modules output
+- [x] Build: tsup dual ESM + CJS output (with `import`/`require` exports)
 - [x] Testing: Vitest (or Jest)
 - [x] Target: Node.js, Browser, React Native, standard JS
 - [x] Package Manager: npm (or yarn)
@@ -15,11 +15,11 @@ This project follows **[Semantic Versioning (SemVer)](https://semver.org/)** wit
 
 ### Version Bump Guidelines
 
-| Change Type | Version Bump | Examples |
-|-------------|--------------|----------|
-| **Breaking changes** | MAJOR (X.0.0) | Removing a function, changing function signatures, renaming exports |
-| **New features** | MINOR (0.X.0) | Adding new validators, formatters, or data sets |
-| **Bug fixes/patches** | PATCH (0.0.X) | Fixing validation logic, correcting data, documentation updates |
+| Change Type           | Version Bump  | Examples                                                            |
+| --------------------- | ------------- | ------------------------------------------------------------------- |
+| **Breaking changes**  | MAJOR (X.0.0) | Removing a function, changing function signatures, renaming exports |
+| **New features**      | MINOR (0.X.0) | Adding new validators, formatters, or data sets                     |
+| **Bug fixes/patches** | PATCH (0.0.X) | Fixing validation logic, correcting data, documentation updates     |
 
 ### Pre-Release Versions
 
@@ -107,35 +107,42 @@ tunisia-kit/
 ## Validation Rules Reference
 
 ### CIN
+
 - Exactly 8 digits
 - Numbers only
 - Optional: Valid starting ranges (0-1 for pre-2000s)
 
 ### Phone (Mobile)
+
 - Formats: `99999999`, `+21699999999`, `0021699999999`
 - Provider prefixes: TT (9x, 4x), Ooredoo (2x), Orange (5x)
 
 ### Landline (v2.0)
+
 - Exactly 8 digits starting with `7`
 - Region prefixes: `71` = Tunis, `72` = Northeast, `73` = Sahel, `74` = Sfax, `75` = Gafsa, `76` = Gabes, `77` = Kasserine, `78` = Bizerte
 
 ### RIB
+
 - Exactly 20 digits
 - Modulo 97 check digit: `97 - (Total mod 97)`
 
 ### IBAN (v2.0)
+
 - Exactly 24 characters starting with `TN`
 - Format: `TN` + 2 check digits + 20-digit RIB
 - ISO 7064 Modulo 97-10 validation
 
 ### Matricule Fiscale
+
 - Format: `1234567 X A M 000`
 - Regex structure validation
 
 ### Passport
+
 - Alphanumeric: 1 letter followed by digits
 
 ### License Plate (v2.0)
+
 - Standard format: `XXX تونس XXXX` (3 digits + تونس + 4 digits)
 - Accept Arabic or Latin representation
-
