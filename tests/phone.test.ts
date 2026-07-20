@@ -17,11 +17,15 @@ describe('isValidPhone', () => {
 
       // Orange (5x)
       expect(isValidPhone('55123456')).toBe(true);
+
+      // Lycamobile (6x)
+      expect(isValidPhone('62345678')).toBe(true);
     });
 
     it('accepts +216 format', () => {
       expect(isValidPhone('+21622555111')).toBe(true);
       expect(isValidPhone('+21698765432')).toBe(true);
+      expect(isValidPhone('+21662345678')).toBe(true);
     });
 
     it('accepts 00216 format', () => {
@@ -43,7 +47,6 @@ describe('isValidPhone', () => {
     it('rejects invalid prefixes', () => {
       expect(isValidPhone('12345678')).toBe(false); // 1x is invalid
       expect(isValidPhone('32345678')).toBe(false); // 3x is invalid
-      expect(isValidPhone('62345678')).toBe(false); // 6x is invalid
       expect(isValidPhone('72345678')).toBe(false); // 7x is invalid
       expect(isValidPhone('82345678')).toBe(false); // 8x is invalid
     });
@@ -69,6 +72,7 @@ describe('getPhoneProvider', () => {
     expect(getPhoneProvider('55123456')).toBe('Orange'); // 5x
     expect(getPhoneProvider('98765432')).toBe('Tunisie Telecom'); // 9x
     expect(getPhoneProvider('40123456')).toBe('Tunisie Telecom'); // 4x
+    expect(getPhoneProvider('62345678')).toBe('Lycamobile'); // 6x
   });
 
   it('handles +216 and 00216 prefixes', () => {

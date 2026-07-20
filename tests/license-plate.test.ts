@@ -32,6 +32,33 @@ describe('isValidLicensePlate', () => {
       expect(isValidLicensePlate('RS12345AB')).toBe(true);
       expect(isValidLicensePlate('rs12345ab')).toBe(true);
     });
+
+    it('accepts motorcycle plates (MN)', () => {
+      expect(isValidLicensePlate('01 MN 1234')).toBe(true);
+      expect(isValidLicensePlate('01MN1234')).toBe(true);
+    });
+
+    it('accepts tractor plates (TRAC)', () => {
+      expect(isValidLicensePlate('01 TRAC 1234')).toBe(true);
+      expect(isValidLicensePlate('01TRAC1234')).toBe(true);
+    });
+
+    it('accepts PAT plates (MF)', () => {
+      expect(isValidLicensePlate('01 MF 01')).toBe(true);
+      expect(isValidLicensePlate('01MF01')).toBe(true);
+    });
+
+    it('accepts CMD diplomatic plates (RB)', () => {
+      expect(isValidLicensePlate('01 RB 01')).toBe(true);
+    });
+
+    it('accepts MD diplomatic plates (SD)', () => {
+      expect(isValidLicensePlate('01 SD 01')).toBe(true);
+    });
+
+    it('accepts MC consular plates (TQ)', () => {
+      expect(isValidLicensePlate('01 TQ 01')).toBe(true);
+    });
   });
 
   describe('invalid license plates', () => {

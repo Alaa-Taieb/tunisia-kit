@@ -83,7 +83,7 @@
   },
   "homepage": "https://github.com/Alaa-Taieb/tunisia-kit#readme",
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.0.0",

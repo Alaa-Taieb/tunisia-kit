@@ -28,7 +28,13 @@ export const BANKS: Bank[] = [
   { code: '25', name: 'Wifak International Bank', abbrev: 'WIB' },
   { code: '26', name: 'Banque Tuniso-Libyenne', abbrev: 'BTL' },
   { code: '32', name: 'Citibank Tunisia', abbrev: 'CITI' },
-  { code: '47', name: 'Arab Banking Corporation', abbrev: 'ABC' }
+  { code: '47', name: 'Arab Banking Corporation', abbrev: 'ABC' },
+  { code: '48', name: 'Banque Tunisienne de Solidarité', abbrev: 'BTS' },
+  { code: '49', name: 'Tunisian Foreign Bank', abbrev: 'TFB' },
+  { code: '50', name: 'Tunis International Bank', abbrev: 'TIB' },
+  { code: '51', name: 'North Africa International Bank', abbrev: 'NAIB' },
+  { code: '52', name: 'Tunisian Saudi Bank', abbrev: 'TSB' },
+  { code: '53', name: 'BH Bank Tunisia', abbrev: 'BH' }
 ];
 
 /**

@@ -32,6 +32,16 @@ describe('BANKS', () => {
     expect(biat).toBeDefined();
     expect(biat?.code).toBe('10');
   });
+
+  it('includes newly added banks', () => {
+    const abbrevs = ['BTS', 'TFB', 'TIB', 'NAIB', 'TSB', 'BH'];
+    abbrevs.forEach((abbr) => {
+      const bank = BANKS.find((b) => b.abbrev === abbr);
+      expect(bank).toBeDefined();
+      expect(bank?.code).toBeDefined();
+      expect(bank?.name).toBeDefined();
+    });
+  });
 });
 
 describe('getBankFromRIB', () => {
@@ -44,6 +54,12 @@ describe('getBankFromRIB', () => {
 
   it('returns null for unknown codes', () => {
     expect(getBankFromRIB('99000000000000000000')).toBeNull();
+  });
+
+  it('recognizes newly added banks', () => {
+    expect(getBankFromRIB('48000000000000000000')).toBe(
+      'Banque Tunisienne de Solidarité (BTS)'
+    );
   });
 
   it('handles short input', () => {

@@ -3,8 +3,9 @@
  * - Tunisie Telecom: 9x, 4x
  * - Ooredoo: 2x
  * - Orange: 5x
+ * - Lycamobile: 6x
  */
-const VALID_PREFIXES = ['2', '4', '5', '9'];
+const VALID_PREFIXES = ['2', '4', '5', '6', '9'];
 
 /**
  * Validates a Tunisian mobile phone number.
@@ -38,7 +39,7 @@ export function isValidPhone(phone: string): boolean {
   return VALID_PREFIXES.includes(prefix);
 }
 
-export type PhoneProvider = 'Tunisie Telecom' | 'Ooredoo' | 'Orange';
+export type PhoneProvider = 'Tunisie Telecom' | 'Ooredoo' | 'Orange' | 'Lycamobile';
 
 /**
  * Returns the *original* operator assigned to a Tunisian mobile number, derived
@@ -52,6 +53,7 @@ export type PhoneProvider = 'Tunisie Telecom' | 'Ooredoo' | 'Orange';
  * - Tunisie Telecom: `9x`, `4x`
  * - Ooredoo: `2x`
  * - Orange: `5x`
+ * - Lycamobile: `6x`
  *
  * @param phone - The mobile number (with or without `+216` / `00216` prefix)
  * @returns The prefix-derived provider, or `null` if the number is invalid
@@ -78,6 +80,7 @@ export function getPhoneProvider(phone: string): PhoneProvider | null {
   const prefix = localNumber.charAt(0);
   if (prefix === '2') return 'Ooredoo';
   if (prefix === '5') return 'Orange';
+  if (prefix === '6') return 'Lycamobile';
   if (prefix === '4' || prefix === '9') return 'Tunisie Telecom';
   return null;
 }

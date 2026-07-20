@@ -5,7 +5,7 @@ describe('isValidMatricule', () => {
   describe('valid matricules', () => {
     it('accepts standard format with slashes', () => {
       expect(isValidMatricule('1234567/A/A/M/000')).toBe(true);
-      expect(isValidMatricule('0000001/Z/P/S/999')).toBe(true);
+      expect(isValidMatricule('0000001/Z/P/M/999')).toBe(true);
     });
 
     it('accepts format without separators', () => {
@@ -26,7 +26,22 @@ describe('isValidMatricule', () => {
 
     it('accepts M (main) and S (secondary)', () => {
       expect(isValidMatricule('1234567XAM000')).toBe(true);
-      expect(isValidMatricule('1234567XAS000')).toBe(true);
+      expect(isValidMatricule('1234567XAE000')).toBe(true); // E is a valid category
+    });
+
+    it('accepts all official category letters (M, C, P, E, N)', () => {
+      // Layout is digit7 + control + TYPE(ABPDN) + CATEGORY(MCPEN) + digit3
+      expect(isValidMatricule('1234567ABM000')).toBe(true); // M
+      expect(isValidMatricule('1234567ABC000')).toBe(true); // C
+      expect(isValidMatricule('1234567ABP000')).toBe(true); // P
+      expect(isValidMatricule('1234567ABE000')).toBe(true); // E
+      expect(isValidMatricule('1234567ABN000')).toBe(true); // N
+    });
+
+    it('rejects excluded control letters (I, O, U)', () => {
+      expect(isValidMatricule('1234567IBM000')).toBe(false);
+      expect(isValidMatricule('1234567OBM000')).toBe(false);
+      expect(isValidMatricule('1234567UBM000')).toBe(false);
     });
   });
 

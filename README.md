@@ -175,7 +175,7 @@ getDelegationsByGovernorate(1); // Returns delegations for Tunis
 | `isValidIBAN(iban)`     | Validates 24-character Tunisian IBAN (ISO 7064)                              |
 | `isValidMatricule(mat)` | Validates Company Tax ID (Matricule Fiscale)                                 |
 | `isValidPassport(pass)` | Validates passport (1 letter + 7 digits, or 2 letters + 6 digits)            |
-| `isValidLicensePlate(plate)` | Validates license plate (standard, diplomatic `CD`, rental `RS`)         |
+| `isValidLicensePlate(plate)` | Validates license plate (standard, diplomatic `CD`/`RB`/`SD`/`TQ`, rental `RS`, motorcycle `MN`, tractor `TRAC`, PAT `MF`) |
 | `isValidPostalCode(code)` | Validates 4-digit postal code (1000–9299)                                  |
 
 ### Provider lookup
@@ -228,6 +228,7 @@ getDelegationsByGovernorate(1); // Returns delegations for Tunis
 - **Tunisie Telecom**: 9x, 4x
 - **Ooredoo**: 2x
 - **Orange**: 5x
+- **Lycamobile**: 6x
 
 ### Landline
 
