@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.0] - 2026-07-20
+
+### Added
+- Lycamobile (`6x`) phone-prefix validation and provider detection
+- Additional Tunisian bank records for RIB bank identification
+- Motorcycle (`MN`), tractor (`TRAC`), and special diplomatic license-plate formats
+
+### Changed
+- Matricule fiscale validation now follows the verified control, type, and category-letter rules
+- Minimum supported Node.js version is now 18
+
 ## [0.3.0] - 2026-07-14
 
 ### Added

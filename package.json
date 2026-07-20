@@ -1,6 +1,6 @@
 {
   "name": "tunisia-kit",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "A type-safe, zero-dependency toolkit for validating and formatting Tunisian data (CIN, phone, RIB, IBAN, currency, license plates)",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -38,7 +38,7 @@
   "scripts": {
     "build": "tsup",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run",
+    "test": "vitest run --pool=threads --poolOptions.threads.singleThread",
     "test:watch": "vitest",
     "coverage": "vitest run --coverage",
     "lint": "eslint .",
