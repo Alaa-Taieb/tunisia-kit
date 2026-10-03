@@ -5,20 +5,60 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [1.0.0] - 2026-10-03
+
+### Fixed
+
+- Reject nonletter matricule controls, invalid domestic RIB keys, placeholders,
+  noncanonical IBAN check digits, and invalid RIB-to-IBAN conversion.
+- Preserve malformed/overlong CINs instead of changing identifiers.
+- Handle all finite currency magnitudes; invalid amounts return an empty string.
+- Share defensive phone/postal parsing and reject malformed lookup/formatter input.
+- Route CommonJS declarations to `.d.cts` for every public export.
+- Replace broad phone guesses with pinned numbering metadata and remove guessed
+  regions for 70/79. Support Arabic/Persian phone/postal input.
+- Deduplicate Mourouj as an alias and reject ambiguous singular delegation lookups.
+- Expose candidates for shared postal blocks rather than a guessed governorate.
+
+### Added
+
+- Stable delegation IDs, scoped/plural delegation lookup, bank-code lookup,
+  approximate postal candidate lookup, and immutable reference data.
+- Data provenance/limitations, migration guidance, and third-party attribution.
+- Regression/property/data-integrity tests; packed ESM/CommonJS consumers,
+  declaration fixtures, runtime compatibility checks, and bundle budgets.
+- Source/test/config type checking and common CI/tag-release validation gates.
+
+### Security
+
+- Upgrade Vitest/coverage together and refresh dependency locks; use a tested
+  patched esbuild override for tsup. Current full npm audit reports zero findings.
+
+### Changed
+
+- See [migration notes](docs/MIGRATION.md) for changed invalid-input behavior,
+  null/ambiguity handling, phone allocations, and readonly reference data.
+- Node >=18 remains supported for the installed library; development uses Node 24.
+
 ## [0.4.0] - 2026-07-20
 
 ### Added
+
 - Lycamobile (`6x`) phone-prefix validation and provider detection
 - Additional Tunisian bank records for RIB bank identification
 - Motorcycle (`MN`), tractor (`TRAC`), and special diplomatic license-plate formats
 
 ### Changed
+
 - Matricule fiscale validation now follows the verified control, type, and category-letter rules
 - Minimum supported Node.js version is now 18
 
 ## [0.3.0] - 2026-07-14
 
 ### Added
+
 - `isValidPostalCode` - Validate 4-digit Tunisian postal code (1000–9299)
 - `getGovernorateFromPostalCode` - Resolve governorate from postal code
 - `POSTAL_CODE_RANGES` - Compact postal-code → governorate range table
@@ -33,6 +73,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ESLint + Prettier configuration and GitHub Actions CI/publish workflows
 
 ### Changed
+
 - `isValidLandline` now accepts prefixes `70` and `79` (Grand Tunis)
 - `getRegionFromLandline` maps `70`/`79` to Grand Tunis
 - `formatCurrency` / `formatCurrencyAr` guard against `Infinity`/`-Infinity`
@@ -42,6 +83,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Build is now a dual ESM + CJS bundle via `tsup`; 100% coverage is enforced in CI
 
 ### Fixed
+
 - `formatCurrency(Infinity)` no longer returns `"Infinity,undefined TND"`
 - README no longer claims a non-existent "provider detection" feature on `isValidPhone`
 

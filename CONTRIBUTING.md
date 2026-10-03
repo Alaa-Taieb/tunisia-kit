@@ -10,13 +10,13 @@ Thank you for your interest in contributing to tunisia-kit! 🇹🇳
    git clone https://github.com/YOUR_USERNAME/tunisia-kit.git
    cd tunisia-kit
    ```
-3. Install dependencies:
+3. Use Node 24 (`nvm use`, matching `.nvmrc`) and install dependencies:
    ```bash
-   npm install
+   npm ci
    ```
-4. Run tests to make sure everything works:
+4. Run all local validation (lint, source/test/config types, coverage, build, packed consumers):
    ```bash
-   npm test
+   npm run check
    ```
 
 ## Development Workflow
@@ -90,14 +90,32 @@ src/
 - **Lookups that can miss return `null`**, never `undefined`. This applies to
   `getBankFromRIB`, `getBankFromIBAN`, `getRegionFromLandline`,
   `getGovernorateFromPostalCode`, `getGovernorateFromDelegation`, and
-  `getDelegationByName`. (Name-based `getDelegationByName` returns `undefined`
-  only because it mirrors `Array.find` semantics.)
+  `getDelegationByName`. Ambiguous names also return `null`; provide a governorate
+  ID or use a plural lookup for disambiguation. Plural lookups return readonly arrays.
 
 ### Testing
 
 - Aim for 100% coverage on new code
 - Include both valid and invalid test cases
 - Test edge cases (empty strings, null, wrong types)
+
+## Reference data and releases
+
+Read [data sources](docs/DATA_SOURCES.md) and [migration notes](docs/MIGRATION.md)
+before changing allocations or return-value behavior. Keep delegation IDs stable,
+store alternate spellings as aliases, and preserve reference immutability. Do not
+claim official validity without a primary source. Record the source commit/date
+and add allocation-boundary tests when refreshing a dataset.
+
+The contributor toolchain uses Node 24; the packed library's runtime floor is
+Node 18. CI exercises that floor and maintained LTS runtimes. `npm run check`
+includes the packed consumer fixtures and entry-point size budgets.
+
+Tag publication reuses the complete CI gates and verifies that the `v*` tag
+matches package.json. Keep the existing publishing token scoped and securely
+stored. npm trusted publishing can replace it once the npm package's trusted
+GitHub workflow is configured; removing the token before that configuration
+would break releases.
 
 ## Questions?
 

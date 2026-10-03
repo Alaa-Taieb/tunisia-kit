@@ -5,11 +5,10 @@
  * - Must not be the all-zero placeholder
  *
  * NOTE: This validator performs format-only validation (8 digits, not all
- * zeros). It does NOT validate the official CIN checksum algorithm. Full
- * checksum validation can be added once the canonical algorithm is confirmed
- * against an authoritative source (e.g., Ministry of Interior specifications).
+ * zeros). It does not verify issuance or identity, and no checksum verification is
+ * provided. See docs/DATA_SOURCES.md for the validation scope.
  */
-export function isValidCIN(cin: string): boolean {
+export function isValidCIN(cin: unknown): boolean {
   if (typeof cin !== 'string') return false;
   if (!/^\d{8}$/.test(cin)) return false;
 

@@ -1,4 +1,9 @@
 import { describe, it, expect } from 'vitest';
+import { ribToIBAN } from '../src/validators/iban';
+
+function validRIB(body: string): string {
+  return body + String(97n - (BigInt(body + '00') % 97n)).padStart(2, '0');
+}
 import {
   GOVERNORATES,
   BANKS,
@@ -46,18 +51,20 @@ describe('BANKS', () => {
 
 describe('getBankFromRIB', () => {
   it('returns bank name for valid codes', () => {
-    expect(getBankFromRIB('10005000000000000097')).toBe(
+    expect(getBankFromRIB(validRIB('100050000000000000'))).toBe(
       'Banque Internationale Arabe de Tunisie (BIAT)'
     );
-    expect(getBankFromRIB('02000000000000000000')).toBe('Société Tunisienne de Banque (STB)');
+    expect(getBankFromRIB(validRIB('020000000000000000'))).toBe(
+      'Société Tunisienne de Banque (STB)'
+    );
   });
 
   it('returns null for unknown codes', () => {
-    expect(getBankFromRIB('99000000000000000000')).toBeNull();
+    expect(getBankFromRIB(validRIB('990000000000000000'))).toBeNull();
   });
 
   it('recognizes newly added banks', () => {
-    expect(getBankFromRIB('48000000000000000000')).toBe(
+    expect(getBankFromRIB(validRIB('480000000000000000'))).toBe(
       'Banque Tunisienne de Solidarité (BTS)'
     );
   });
@@ -90,7 +97,7 @@ describe('getBankFromIBAN', () => {
   });
 
   it('returns null for unknown bank code', () => {
-    expect(getBankFromIBAN('TN5900995000000000000049')).toBeNull();
+    expect(getBankFromIBAN(ribToIBAN(validRIB('990000000000000000')))).toBeNull();
   });
 });
 
@@ -115,7 +122,7 @@ describe('getGovernorateFromPostalCode', () => {
     expect(getGovernorateFromPostalCode('abcd')).toBeNull();
   });
 
-  it('covers every governorate via its range', () => {
+  it('contains valid governorate foreign keys', () => {
     for (const [, , govId] of POSTAL_CODE_RANGES) {
       const sample = GOVERNORATES.find((g) => g.id === govId);
       expect(sample).toBeDefined();
@@ -186,8 +193,8 @@ describe('getDelegationByName', () => {
     expect(getDelegationByName('مدينة تونس')?.governorate_id).toBe(1);
   });
 
-  it('returns undefined for unknown or invalid input', () => {
-    expect(getDelegationByName('Nowhere')).toBeUndefined();
-    expect(getDelegationByName(null as any)).toBeUndefined();
+  it('returns null for unknown or invalid input', () => {
+    expect(getDelegationByName('Nowhere')).toBeNull();
+    expect(getDelegationByName(null)).toBeNull();
   });
 });

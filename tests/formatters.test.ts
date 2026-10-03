@@ -54,13 +54,13 @@ describe('formatCurrency', () => {
   });
 
   it('handles invalid input', () => {
-    expect(formatCurrency(NaN)).toBe('0,000 TND');
-    expect(formatCurrency('invalid' as any)).toBe('0,000 TND');
+    expect(formatCurrency(NaN)).toBe('');
+    expect(formatCurrency('invalid' as any)).toBe('');
   });
 
   it('handles non-finite values', () => {
-    expect(formatCurrency(Infinity)).toBe('0,000 TND');
-    expect(formatCurrency(-Infinity)).toBe('0,000 TND');
+    expect(formatCurrency(Infinity)).toBe('');
+    expect(formatCurrency(-Infinity)).toBe('');
   });
 
   it('formats with Arabic-Indic digits', () => {
@@ -69,13 +69,13 @@ describe('formatCurrency', () => {
   });
 
   it('handles non-finite Arabic values', () => {
-    expect(formatCurrencyAr(Infinity)).toBe('٠،٠٠٠ د.ت');
-    expect(formatCurrencyAr(-Infinity)).toBe('٠،٠٠٠ د.ت');
+    expect(formatCurrencyAr(Infinity)).toBe('');
+    expect(formatCurrencyAr(-Infinity)).toBe('');
   });
 
   it('handles invalid Arabic input', () => {
-    expect(formatCurrencyAr(NaN)).toBe('٠،٠٠٠ د.ت');
-    expect(formatCurrencyAr('invalid' as any)).toBe('٠،٠٠٠ د.ت');
+    expect(formatCurrencyAr(NaN)).toBe('');
+    expect(formatCurrencyAr('invalid' as any)).toBe('');
   });
 });
 
@@ -93,7 +93,7 @@ describe('formatCIN', () => {
     expect(formatCIN('04-555-666')).toBe('04555666');
   });
 
-  it('truncates long numbers to last 8', () => {
-    expect(formatCIN('123456789')).toBe('23456789');
+  it('preserves overlong identifiers', () => {
+    expect(formatCIN('123456789')).toBe('123456789');
   });
 });

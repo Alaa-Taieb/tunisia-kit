@@ -1,13 +1,16 @@
+import { isValidIBAN } from '../validators/iban.js';
+import { isValidRIB } from '../validators/rib.js';
+import { freezeRecords } from '../internal/freeze.js';
 /**
  * Tunisian bank codes mapping (first 2 digits of RIB).
  */
 export interface Bank {
-  code: string;
-  name: string;
-  abbrev: string;
+  readonly code: string;
+  readonly name: string;
+  readonly abbrev: string;
 }
 
-export const BANKS: Bank[] = [
+export const BANKS = freezeRecords<Bank>([
   { code: '01', name: 'Arab Tunisian Bank', abbrev: 'ATB' },
   { code: '02', name: 'Société Tunisienne de Banque', abbrev: 'STB' },
   { code: '03', name: 'Banque Nationale Agricole', abbrev: 'BNA' },
@@ -35,43 +38,28 @@ export const BANKS: Bank[] = [
   { code: '51', name: 'North Africa International Bank', abbrev: 'NAIB' },
   { code: '52', name: 'Tunisian Saudi Bank', abbrev: 'TSB' },
   { code: '53', name: 'BH Bank Tunisia', abbrev: 'BH' }
-];
+]);
 
 /**
  * Bank code to bank info lookup map
  */
 const bankMap = new Map<string, Bank>(BANKS.map((b) => [b.code, b]));
 
-/**
- * Get bank information from a RIB number.
- * @param rib - The 20-digit RIB number
- * @returns Bank name or `null` if the code is not found
- */
-export function getBankFromRIB(rib: string): string | null {
-  const cleaned = rib.replace(/\s/g, '');
-  if (cleaned.length < 2) return null;
+/** Return an immutable reference record for a known two-digit bank code. */
+export function getBankByCode(code: unknown): Bank | null {
+  return typeof code === 'string' ? (bankMap.get(code) ?? null) : null;
+}
 
-  const code = cleaned.slice(0, 2);
-  const bank = bankMap.get(code);
-
+/** Bank name from a checksum-valid RIB, or null for invalid/unknown input. */
+export function getBankFromRIB(rib: unknown): string | null {
+  if (typeof rib !== 'string' || !isValidRIB(rib)) return null;
+  const bank = getBankByCode(rib.replace(/\s/g, '').slice(0, 2));
   return bank ? `${bank.name} (${bank.abbrev})` : null;
 }
 
-/**
- * Get bank information from a Tunisian IBAN.
- *
- * An IBAN has the shape `TN` + 2 check digits + a 20-digit RIB. The bank code
- * is therefore the first two digits of that RIB, i.e. IBAN characters 4–5.
- *
- * @param iban - The 24-character IBAN (optionally spaced)
- * @returns Bank name or `null` if the IBAN is invalid or the code is unknown
- */
-export function getBankFromIBAN(iban: string): string | null {
-  const cleaned = iban.replace(/\s/g, '').toUpperCase();
-  if (cleaned.length !== 24 || !cleaned.startsWith('TN')) return null;
-
-  const code = cleaned.slice(4, 6);
-  const bank = bankMap.get(code);
-
+/** Bank name from a checksum-valid Tunisian IBAN, or null. */
+export function getBankFromIBAN(iban: unknown): string | null {
+  if (typeof iban !== 'string' || !isValidIBAN(iban)) return null;
+  const bank = getBankByCode(iban.replace(/\s/g, '').slice(4, 6));
   return bank ? `${bank.name} (${bank.abbrev})` : null;
 }

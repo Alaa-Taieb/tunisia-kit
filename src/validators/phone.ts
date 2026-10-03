@@ -1,86 +1,25 @@
-/**
- * Valid Tunisian mobile phone prefixes by provider:
- * - Tunisie Telecom: 9x, 4x
- * - Ooredoo: 2x
- * - Orange: 5x
- * - Lycamobile: 6x
+import { localPhoneNumber, MOBILE_PATTERN } from '../internal/phone.js';
+
+/** Validate mobile allocations; supports local, +216, 00216, and Arabic digits.
+ * This does not establish that a subscriber number is assigned or active.
  */
-const VALID_PREFIXES = ['2', '4', '5', '6', '9'];
-
-/**
- * Validates a Tunisian mobile phone number.
- * Supports formats:
- * - 22555111 (8 digits)
- * - +21622555111 (with country code)
- * - 0021622555111 (with 00 prefix)
- */
-export function isValidPhone(phone: string): boolean {
-  if (typeof phone !== 'string') return false;
-
-  // Remove spaces and dashes
-  const cleaned = phone.replace(/[\s-]/g, '');
-
-  // Extract the 8-digit local number
-  let localNumber: string;
-
-  if (cleaned.startsWith('+216')) {
-    localNumber = cleaned.slice(4);
-  } else if (cleaned.startsWith('00216')) {
-    localNumber = cleaned.slice(5);
-  } else {
-    localNumber = cleaned;
-  }
-
-  // Must be exactly 8 digits
-  if (!/^\d{8}$/.test(localNumber)) return false;
-
-  // Check valid provider prefix
-  const prefix = localNumber.charAt(0);
-  return VALID_PREFIXES.includes(prefix);
+export function isValidPhone(phone: unknown): boolean {
+  const number = localPhoneNumber(phone);
+  return number !== null && MOBILE_PATTERN.test(number);
 }
 
-export type PhoneProvider = 'Tunisie Telecom' | 'Ooredoo' | 'Orange' | 'Lycamobile';
+export type PhoneProvider = 'Tunisie Telecom' | 'Ooredoo' | 'Orange';
 
 /**
- * Returns the *original* operator assigned to a Tunisian mobile number, derived
- * from its first digit.
- *
- * **⚠️ MNP caveat:** Tunisia fully implements Mobile Number Portability, so a
- * number's *current* network operator can differ from the prefix it was
- * originally assigned. This helper reports only the prefix-derived operator
- * and MUST NOT be used to determine the number's active carrier.
- *
- * - Tunisie Telecom: `9x`, `4x`
- * - Ooredoo: `2x`
- * - Orange: `5x`
- * - Lycamobile: `6x`
- *
- * @param phone - The mobile number (with or without `+216` / `00216` prefix)
- * @returns The prefix-derived provider, or `null` if the number is invalid
+ * Prefix-assigned operator, never the active carrier after number portability.
+ * Returns null for malformed/unallocated numbers or allocations without a
+ * sourced carrier mapping (including supported 3-prefix mobile allocations).
  */
-export function getPhoneProvider(phone: string): PhoneProvider | null {
-  if (typeof phone !== 'string') return null;
-
-  // Remove spaces and dashes
-  const cleaned = phone.replace(/[\s-]/g, '');
-
-  // Extract the 8-digit local number
-  let localNumber: string;
-  if (cleaned.startsWith('+216')) {
-    localNumber = cleaned.slice(4);
-  } else if (cleaned.startsWith('00216')) {
-    localNumber = cleaned.slice(5);
-  } else {
-    localNumber = cleaned;
-  }
-
-  // Must be exactly 8 digits
-  if (!/^\d{8}$/.test(localNumber)) return null;
-
-  const prefix = localNumber.charAt(0);
-  if (prefix === '2') return 'Ooredoo';
-  if (prefix === '5') return 'Orange';
-  if (prefix === '6') return 'Lycamobile';
-  if (prefix === '4' || prefix === '9') return 'Tunisie Telecom';
+export function getPhoneProvider(phone: unknown): PhoneProvider | null {
+  const number = localPhoneNumber(phone);
+  if (number === null || !MOBILE_PATTERN.test(number)) return null;
+  if (/^(?:2|4[568])/.test(number)) return 'Ooredoo';
+  if (number.startsWith('5')) return 'Orange';
+  if (/^[49]/.test(number)) return 'Tunisie Telecom';
   return null;
 }

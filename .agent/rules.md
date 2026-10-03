@@ -100,7 +100,7 @@ tunisia-kit/
 - [x] **Automated Tests**: Run `npm test` with 100% coverage before any release
 - [x] **Linting**: Ensure code passes ESLint checks
 - [x] **Build**: Verify `npm run build` succeeds
-- [x] **Bundle Size**: Confirm gzipped output < 5kb
+- [x] **Bundle Size**: Confirm validators/formatters < 5 KiB gzipped; enforce documented root/data budgets
 - [x] **Type Check**: Ensure `tsc --noEmit` passes
 - [x] **Known Valid/Invalid Data**: Test against curated lists of real CINs, RIBs, phone numbers
 
@@ -115,12 +115,13 @@ tunisia-kit/
 ### Phone (Mobile)
 
 - Formats: `99999999`, `+21699999999`, `0021699999999`
-- Provider prefixes: TT (9x, 4x), Ooredoo (2x), Orange (5x)
+- Use the pinned allocation/carrier metadata in docs/DATA_SOURCES.md; do not infer validity from the first digit alone.
 
-### Landline (v2.0)
+### Fixed lines
 
-- Exactly 8 digits starting with `7`
-- Region prefixes: `71` = Tunis, `72` = Northeast, `73` = Sahel, `74` = Sfax, `75` = Gafsa, `76` = Gabes, `77` = Kasserine, `78` = Bizerte
+- Use the sourced fixed-line pattern (including 7x, selected 3x, 81200).
+- Only prefixes 71–78 have legacy approximate geographic records.
+- Never guess a location for 70/79 or other nonmapped allocations.
 
 ### RIB
 

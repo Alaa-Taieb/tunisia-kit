@@ -1,11 +1,12 @@
 /**
- * Validates a Tunisian license plate (Matricule).
+ * Checks historical Tunisian license-plate patterns, not issuance.
+ * See docs/DATA_SOURCES.md for provenance limitations.
  *
  * Standard formats:
  * - "123 تونس 4567" (Arabic, with or without spaces)
  * - "123 TU 4567"  (Latin representation, case-insensitive)
  *
- * Special series (per ATT.TN documentation):
+ * Supported historical special series:
  * - Diplomatic corps: "12 CD 34" (CD = Corps Diplomatique)
  * - Résident Secondaire / rental: "RS 12345 AB"
  * - Motorcycle: "01 MN 1234"
@@ -17,7 +18,7 @@
  *
  * @see https://en.wikipedia.org/wiki/Vehicle_registration_plates_of_Tunisia
  */
-export function isValidLicensePlate(plate: string): boolean {
+export function isValidLicensePlate(plate: unknown): boolean {
   if (typeof plate !== 'string') return false;
 
   // Remove all spaces

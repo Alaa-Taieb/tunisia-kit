@@ -1,22 +1,14 @@
 import { GOVERNORATES, type Governorate } from './governorates.js';
+import { freezeRecords } from '../internal/freeze.js';
+import { postalCodeNumber } from '../internal/postal-code.js';
 
-/**
- * Compact, bundle-conscious Tunisian postal-code → governorate mapping.
- *
- * Tunisian postal codes are four digits. The first two digits denote the
- * governorate (see https://en.wikipedia.org/wiki/Postal_codes_in_Tunisia).
- * Because a few prefixes are shared by several governorates (notably `11xx`
- * and `20xx`), this lightweight table maps each 100-block to a
- * *representative* governorate and is intended for approximate grouping, not
- * authoritative address resolution.
- *
- * Tuple shape: `[minCode, maxCode, governorateId]`
+/** Approximate unambiguous postal blocks, not an authoritative address registry.
+ * Shared 11xx/20xx blocks are exposed as candidates instead of assigned a winner.
+ * See docs/DATA_SOURCES.md; format validity does not imply an assigned code.
  */
-export const POSTAL_CODE_RANGES: ReadonlyArray<readonly [number, number, number]> = [
+export const POSTAL_CODE_RANGES = freezeRecords<[number, number, number]>([
   [1000, 1099, 1], // Tunis
-  [1100, 1199, 6], // Zaghouan (also Ben Arous / Manouba)
   [1200, 1299, 17], // Kasserine
-  [2000, 2099, 1], // Tunis (also Ariana / Ben Arous / Manouba)
   [2100, 2199, 22], // Gafsa
   [2200, 2299, 23], // Tozeur
   [3000, 3099, 15], // Sfax
@@ -35,27 +27,24 @@ export const POSTAL_CODE_RANGES: ReadonlyArray<readonly [number, number, number]
   [8100, 8199, 9], // Jendouba
   [9000, 9099, 8], // Béja
   [9100, 9199, 18] // Sidi Bouzid
-];
+]);
 
-/**
- * Resolve the governorate for a Tunisian postal code.
- *
- * @param code - A 4-digit postal code (string or number)
- * @returns The matching `Governorate`, or `null` if the code is invalid or
- *          falls outside any known range.
- */
-export function getGovernorateFromPostalCode(code: string | number): Governorate | null {
-  const normalized = typeof code === 'number' ? String(code) : String(code).replace(/\s/g, '');
-  if (!/^\d{4}$/.test(normalized)) return null;
+/** Possible governorates for approximate grouping, never exact address resolution. */
+export function getGovernorateCandidatesFromPostalCode(code: unknown): readonly Governorate[] {
+  const value = postalCodeNumber(code);
+  if (value === null) return Object.freeze([]);
+  let ids: readonly number[];
+  if (value >= 1100 && value <= 1199) ids = [3, 4, 6];
+  else if (value >= 2000 && value <= 2099) ids = [1, 2, 3, 4];
+  else {
+    const range = POSTAL_CODE_RANGES.find(([min, max]) => value >= min && value <= max);
+    ids = range ? [range[2]] : [];
+  }
+  return Object.freeze(GOVERNORATES.filter((g) => ids.includes(g.id)));
+}
 
-  const value = parseInt(normalized, 10);
-  if (value < 1000 || value > 9299) return null;
-
-  const match = POSTAL_CODE_RANGES.find(([min, max]) => value >= min && value <= max);
-  if (!match) return null;
-
-  const governorateId = match[2];
-  // governorateId always maps to a real governorate
-  /* v8 ignore next */
-  return GOVERNORATES.find((g) => g.id === governorateId) ?? null;
+/** Unique approximate governorate, or null for ambiguous/invalid/unmapped input. */
+export function getGovernorateFromPostalCode(code: unknown): Governorate | null {
+  const candidates = getGovernorateCandidatesFromPostalCode(code);
+  return candidates.length === 1 ? candidates[0] : null;
 }

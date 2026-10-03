@@ -108,13 +108,11 @@ describe('getRegionFromLandline', () => {
     expect(region!.name_fr).toBe('Grand Tunis');
   });
 
-  it('maps 70/79 to Grand Tunis', () => {
+  it('does not guess regions for 70/79', () => {
     const r70 = getRegionFromLandline('70123456');
-    expect(r70).not.toBeNull();
-    expect(r70!.name_fr).toBe('Grand Tunis');
+    expect(r70).toBeNull();
     const r79 = getRegionFromLandline('79123456');
-    expect(r79).not.toBeNull();
-    expect(r79!.name_fr).toBe('Grand Tunis');
+    expect(r79).toBeNull();
   });
 
   it('returns null for invalid prefix', () => {
@@ -128,13 +126,13 @@ describe('getRegionFromLandline', () => {
 });
 
 describe('LANDLINE_REGIONS', () => {
-  it('contains all 10 regions', () => {
-    expect(LANDLINE_REGIONS.length).toBe(10);
+  it('contains the 8 geographic prefix mappings', () => {
+    expect(LANDLINE_REGIONS.length).toBe(8);
   });
 
-  it('has correct prefixes 70-79', () => {
+  it('has geographic prefixes 71-78', () => {
     const prefixes = LANDLINE_REGIONS.map((r) => r.prefix).sort();
-    expect(prefixes).toEqual(['70', '71', '72', '73', '74', '75', '76', '77', '78', '79']);
+    expect(prefixes).toEqual(['71', '72', '73', '74', '75', '76', '77', '78']);
   });
 
   it('each region has French and Arabic names', () => {

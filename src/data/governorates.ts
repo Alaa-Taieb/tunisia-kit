@@ -1,14 +1,15 @@
+import { freezeRecords } from '../internal/freeze.js';
 /**
  * All 24 Tunisian Governorates with French and Arabic names.
  * IDs 1-24 match the governorate_id used in DELEGATIONS.
  */
 export interface Governorate {
-  id: number;
-  name_fr: string;
-  name_ar: string;
+  readonly id: number;
+  readonly name_fr: string;
+  readonly name_ar: string;
 }
 
-export const GOVERNORATES: Governorate[] = [
+export const GOVERNORATES = freezeRecords<Governorate>([
   { id: 1, name_fr: 'Tunis', name_ar: 'تونس' },
   { id: 2, name_fr: 'Ariana', name_ar: 'أريانة' },
   { id: 3, name_fr: 'Ben Arous', name_ar: 'بن عروس' },
@@ -33,4 +34,4 @@ export const GOVERNORATES: Governorate[] = [
   { id: 22, name_fr: 'Gafsa', name_ar: 'قفصة' },
   { id: 23, name_fr: 'Tozeur', name_ar: 'توزر' },
   { id: 24, name_fr: 'Kebili', name_ar: 'قبلي' }
-];
+]);

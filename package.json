@@ -1,6 +1,6 @@
 {
   "name": "tunisia-kit",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "description": "A type-safe, zero-dependency toolkit for validating and formatting Tunisian data (CIN, phone, RIB, IBAN, currency, license plates)",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -9,41 +9,69 @@
   "sideEffects": false,
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     },
     "./validators": {
-      "types": "./dist/validators/index.d.ts",
-      "import": "./dist/validators/index.js",
-      "require": "./dist/validators/index.cjs"
+      "import": {
+        "types": "./dist/validators/index.d.ts",
+        "default": "./dist/validators/index.js"
+      },
+      "require": {
+        "types": "./dist/validators/index.d.cts",
+        "default": "./dist/validators/index.cjs"
+      }
     },
     "./formatters": {
-      "types": "./dist/formatters/index.d.ts",
-      "import": "./dist/formatters/index.js",
-      "require": "./dist/formatters/index.cjs"
+      "import": {
+        "types": "./dist/formatters/index.d.ts",
+        "default": "./dist/formatters/index.js"
+      },
+      "require": {
+        "types": "./dist/formatters/index.d.cts",
+        "default": "./dist/formatters/index.cjs"
+      }
     },
     "./data": {
-      "types": "./dist/data/index.d.ts",
-      "import": "./dist/data/index.js",
-      "require": "./dist/data/index.cjs"
+      "import": {
+        "types": "./dist/data/index.d.ts",
+        "default": "./dist/data/index.js"
+      },
+      "require": {
+        "types": "./dist/data/index.d.cts",
+        "default": "./dist/data/index.cjs"
+      }
     }
   },
   "files": [
     "dist",
     "README.md",
     "README.fr.md",
-    "LICENSE"
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md",
+    "docs/DATA_SOURCES.md",
+    "docs/MIGRATION.md",
+    "CONTRIBUTING.md",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "tsup",
-    "typecheck": "tsc --noEmit",
-    "test": "vitest run --pool=threads --poolOptions.threads.singleThread",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.check.json",
+    "test": "vitest run",
     "test:watch": "vitest",
     "coverage": "vitest run --coverage",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "prepublishOnly": "npm run build && npm test"
+    "prepublishOnly": "npm run check",
+    "test:package": "node scripts/test-package.mjs",
+    "test:runtime": "node scripts/test-runtime.mjs",
+    "check": "npm run lint && npm run typecheck && npm run coverage && npm run build && npm run test:package"
   },
   "keywords": [
     "tunisia",
@@ -86,13 +114,20 @@
     "node": ">=18.0.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.0.0",
-    "@vitest/coverage-v8": "^2.0.0",
-    "eslint": "^9.0.0",
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.19.1",
+    "@vitest/coverage-v8": "^4.1.11",
+    "esbuild": "^0.28.2",
+    "eslint": "^10.12.0",
     "prettier": "^3.0.0",
     "tsup": "^8.0.0",
     "typescript": "^5.0.0",
     "typescript-eslint": "^8.0.0",
-    "vitest": "^2.0.0"
+    "vitest": "^4.1.11"
+  },
+  "overrides": {
+    "tsup": {
+      "esbuild": "^0.28.1"
+    }
   }
 }

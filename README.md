@@ -32,21 +32,21 @@ A type-safe, zero-dependency toolkit for validating and formatting Tunisian data
 
 - **Zero runtime dependencies** — nothing extra ships to your users.
 - **Fully typed** — written in TypeScript, with types exported for every value.
-- **Accurate rules** — RIB uses Modulo 97; IBAN uses ISO 7064; postal codes and prefixes follow real Tunisian formats.
+- **Documented validation scope** — RIB and IBAN checksums, sourced phone allocations, and format-only document checks. See [data sources and limitations](docs/DATA_SOURCES.md).
 - **100% test coverage** — every validator, formatter, and lookup is tested.
 - **Bilingual** — French and Arabic labels for governorates and delegations, out of the box.
 - **Tree-shakeable** — `sideEffects: false` means unused exports are dropped from your bundle.
 
 ## Features
 
-| | |
-| --- | --- |
-| ✅ **Validators** | CIN, phone, landline, RIB, IBAN, matricule, passport, license plate, postal code |
-| 🔁 **Formatters** | Phone, landline, IBAN, currency (FR + AR), CIN — with Arabic-Indic digits |
-| 🗂️ **Static Data** | 24 governorates, ~260 delegations, banks, landline regions, postal ranges |
-| 🇫🇷🇹🇳 **Bilingual** | French & Arabic labels for governorates and delegations |
-| 🪶 **Zero-dep & tiny** | No runtime dependencies, tree-shakeable, side-effect free |
-| 🧪 **Fully tested** | 100% test coverage, fully typed TypeScript |
+|                        |                                                                                                                            |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| ✅ **Validators**      | CIN, phone, landline, RIB, IBAN, matricule, passport, license plate, postal code                                           |
+| 🔁 **Formatters**      | Phone, landline, IBAN, currency (FR + AR), CIN — with Arabic-Indic digits                                                  |
+| 🗂️ **Static Data**     | 24 governorates, 263 canonical delegations with IDs/aliases, historical bank labels, approximate regions/postal candidates |
+| 🇫🇷🇹🇳 **Bilingual**     | French & Arabic labels for governorates and delegations                                                                    |
+| 🪶 **Zero-dep & tiny** | No runtime dependencies, tree-shakeable, side-effect free                                                                  |
+| 🧪 **Fully tested**    | 100% test coverage, fully typed TypeScript                                                                                 |
 
 ## Installation
 
@@ -92,7 +92,7 @@ import { ribToIBAN, formatIBAN } from 'tunisia-kit';
 const iban = ribToIBAN('10005000000000000049');
 // → "TN5910005000000000000049"
 
-formatIBAN(iban);
+if (iban !== null) formatIBAN(iban);
 // → "TN59 1000 5000 0000 0000 0049"
 ```
 
@@ -108,7 +108,7 @@ import {
 
 getBankFromRIB('10005000000000000049'); // → "Banque Internationale Arabe de Tunisie (BIAT)"
 getBankFromIBAN('TN5910005000000000000049'); // → "Banque Internationale Arabe de Tunisie (BIAT)"
-getRegionFromLandline('70123456'); // → { prefix: '70', name_fr: 'Grand Tunis', ... }
+getRegionFromLandline('71234567'); // → { prefix: '71', name_fr: 'Grand Tunis', ... }
 getGovernorateFromPostalCode('1000'); // → { id: 1, name_fr: 'Tunis', ... }
 ```
 
@@ -130,8 +130,13 @@ formatCurrencyAr(1250.5); // "١ ٢٥٠،٥٠٠ د.ت"
 formatPhoneAr('22555111'); // "٢٢ ٥٥٥ ١١١"
 ```
 
-> **Note:** the `format*` functions return the original input unchanged when it
-> cannot be parsed (e.g. an input of the wrong length).
+> **Input handling:** string formatters preserve malformed strings and return `''` for
+> non-string input. CIN formatting never truncates an identifier. Currency helpers
+> return `''` for invalid/non-finite amounts; zero remains `"0,000 TND"`. Formatting
+> does not prove that a document or subscriber number is issued.
+>
+> [Migration from 0.4.0](docs/MIGRATION.md) describes stricter validation, readonly
+> reference data, and changed lookup/formatting behavior.
 
 ### Mobile provider (prefix only — MNP caveat)
 
@@ -141,9 +146,9 @@ import { getPhoneProvider } from 'tunisia-kit';
 getPhoneProvider('22555111'); // → 'Ooredoo'
 ```
 
-> ⚠️ **Tunisia has full Mobile Number Portability**, so a number's *active*
+> ⚠️ **Tunisia has full Mobile Number Portability**, so a number's _active_
 > carrier may differ from its prefix. `getPhoneProvider` returns the
-> *prefix-assigned* operator only and must **not** be used to determine the
+> _prefix-assigned_ operator only and must **not** be used to determine the
 > number's current carrier.
 
 ### Populating Dropdowns
@@ -166,81 +171,106 @@ getDelegationsByGovernorate(1); // Returns delegations for Tunis
 
 ### Validators
 
-| Function                | Description                                                                   |
-| ----------------------- | ----------------------------------------------------------------------------- |
-| `isValidCIN(cin)`       | Validates 8-digit Tunisian National ID                                        |
-| `isValidPhone(phone)`   | Validates mobile number with provider prefixes                               |
-| `isValidLandline(phone)`| Validates landline number (prefixes 70–79) with region detection             |
-| `isValidRIB(rib)`       | Validates 20-digit bank account (Modulo 97)                                  |
-| `isValidIBAN(iban)`     | Validates 24-character Tunisian IBAN (ISO 7064)                              |
-| `isValidMatricule(mat)` | Validates Company Tax ID (Matricule Fiscale)                                 |
-| `isValidPassport(pass)` | Validates passport (1 letter + 7 digits, or 2 letters + 6 digits)            |
+| Function                     | Description                                                                                                                |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `isValidCIN(cin)`            | Checks 8-digit CIN syntax; does not verify issuance                                                                        |
+| `isValidPhone(phone)`        | Validates mobile number with provider prefixes                                                                             |
+| `isValidLandline(phone)`     | Validates supported fixed-line allocations (7x, selected 3x, 81200); region lookup is separate                             |
+| `isValidRIB(rib)`            | Validates 20-digit bank account (Modulo 97)                                                                                |
+| `isValidIBAN(iban)`          | Validates 24-character Tunisian IBAN (ISO 7064)                                                                            |
+| `isValidMatricule(mat)`      | Checks tax-ID syntax; does not validate the control-letter checksum                                                        |
+| `isValidPassport(pass)`      | Validates passport (1 letter + 7 digits, or 2 letters + 6 digits)                                                          |
 | `isValidLicensePlate(plate)` | Validates license plate (standard, diplomatic `CD`/`RB`/`SD`/`TQ`, rental `RS`, motorcycle `MN`, tractor `TRAC`, PAT `MF`) |
-| `isValidPostalCode(code)` | Validates 4-digit postal code (1000–9299)                                  |
+| `isValidPostalCode(code)`    | Validates 4-digit postal code (1000–9299)                                                                                  |
 
 ### Provider lookup
 
-| Function              | Description                                  |
-| --------------------- | -------------------------------------------- |
+| Function                  | Description                                           |
+| ------------------------- | ----------------------------------------------------- |
 | `getPhoneProvider(phone)` | Prefix-derived mobile operator (see MNP caveat above) |
 
 ### Formatters
 
-| Function           | Input      | Output             |
-| ------------------ | ---------- | ------------------ |
-| `formatPhone(str)` | `22555111` | `22 555 111`       |
-| `formatPhoneIntl(str)` | `22555111` | `+216 22 555 111` |
-| `formatPhoneAr(str)` | `22555111` | `٢٢ ٥٥٥ ١١١`     |
-| `formatLandline(str)` | `70123456` | `70 123 456`      |
+| Function                  | Input      | Output            |
+| ------------------------- | ---------- | ----------------- |
+| `formatPhone(str)`        | `22555111` | `22 555 111`      |
+| `formatPhoneIntl(str)`    | `22555111` | `+216 22 555 111` |
+| `formatPhoneAr(str)`      | `22555111` | `٢٢ ٥٥٥ ١١١`      |
+| `formatLandline(str)`     | `70123456` | `70 123 456`      |
 | `formatLandlineIntl(str)` | `70123456` | `+216 70 123 456` |
-| `formatIBAN(str)`   | `TN59...`  | `TN59 1000 ...`    |
-| `formatCurrency(num)` | `1250.5` | `1 250,500 TND`    |
-| `formatCurrencyAr(num)` | `1250.5` | `١ ٢٥٠،٥٠٠ د.ت`  |
-| `formatCIN(str)`    | `4555666`  | `04555666`         |
+| `formatIBAN(str)`         | `TN59...`  | `TN59 1000 ...`   |
+| `formatCurrency(num)`     | `1250.5`   | `1 250,500 TND`   |
+| `formatCurrencyAr(num)`   | `1250.5`   | `١ ٢٥٠،٥٠٠ د.ت`   |
+| `formatCIN(str)`          | `4555666`  | `04555666`        |
 
 ### Utilities
 
-| Function                          | Description                                          |
-| --------------------------------- | ---------------------------------------------------- |
-| `ribToIBAN(rib)`                  | Convert 20-digit RIB to 24-character IBAN            |
-| `getBankFromRIB(rib)`             | Get bank name from RIB                               |
-| `getBankFromIBAN(iban)`           | Get bank name from IBAN                              |
-| `getRegionFromLandline(phone)`    | Get region info from landline prefix                 |
-| `getGovernorateFromPostalCode(code)` | Get governorate from postal code                  |
-| `getDelegationsByGovernorate(id)` | Get delegations for a governorate                    |
-| `getGovernorateFromDelegation(name)` | Get governorate for a delegation name (FR/AR)    |
-| `getDelegationByName(name)`       | Find a delegation by name (FR/AR)                    |
+| Function                                       | Description                                                       |
+| ---------------------------------------------- | ----------------------------------------------------------------- |
+| `ribToIBAN(rib)`                               | Convert 20-digit RIB to 24-character IBAN                         |
+| `getBankByCode(code)`                          | Immutable historical bank record for a two-digit code, or null    |
+| `getBankFromRIB(rib)`                          | Get historical bank label from a checksum-valid RIB               |
+| `getBankFromIBAN(iban)`                        | Get historical bank label from a checksum-valid Tunisian IBAN     |
+| `getRegionFromLandline(phone)`                 | Get region info from landline prefix                              |
+| `getGovernorateCandidatesFromPostalCode(code)` | Approximate candidates; never exact address resolution            |
+| `getGovernorateFromPostalCode(code)`           | Unique approximate governorate; null for ambiguous/unmapped codes |
+| `getDelegationsByGovernorate(id)`              | Get delegations for a governorate                                 |
+| `getGovernorateFromDelegation(name)`           | Resolve a unique name; optional governorate ID disambiguates      |
+| `getDelegationsByName(name, governorateId?)`   | All matching records, optionally scoped                           |
+| `getDelegationByName(name, governorateId?)`    | Unique record or null; optional governorate ID disambiguates      |
 
 ### Static Data
 
-| Export                 | Description                                                          |
-| ---------------------- | -------------------------------------------------------------------- |
-| `GOVERNORATES`         | All 24 governorates (id, name_fr, name_ar)                           |
-| `DELEGATIONS`          | ~260 administrative delegations across all 24 governorates            |
-| `BANKS`                | Bank codes for RIB identification                                     |
-| `LANDLINE_REGIONS`     | 10 landline prefixes (70–79) with region mapping                     |
-| `POSTAL_CODE_RANGES`  | Compact postal-code → governorate range table                        |
+| Export               | Description                                                               |
+| -------------------- | ------------------------------------------------------------------------- |
+| `GOVERNORATES`       | All 24 governorates (id, name_fr, name_ar)                                |
+| `DELEGATIONS`        | 263 canonical historical records with stable package IDs and aliases      |
+| `BANKS`              | Bank codes for RIB identification                                         |
+| `LANDLINE_REGIONS`   | 8 approximate geographic prefix mappings (71–78)                          |
+| `POSTAL_CODE_RANGES` | Approximate unambiguous postal blocks; shared blocks use candidate lookup |
 
 ## Phone Prefixes
 
 ### Mobile
 
-- **Tunisie Telecom**: 9x, 4x
-- **Ooredoo**: 2x
+Allocation validation follows the pinned [TN numbering metadata](docs/DATA_SOURCES.md),
+including selected 3-prefix allocations, 2x/5x/9x, and 40–48. 6x and 49 are rejected.
+Prefix-assigned carrier labels use more specific rules:
+
+- **Tunisie Telecom**: 9x and 4x except 45/46/48
+- **Ooredoo**: 2x, 45, 46, 48
 - **Orange**: 5x
-- **Lycamobile**: 6x
+- **Unknown reference carrier**: supported 3-prefix mobile allocations return null
 
-### Landline
+### Fixed lines and approximate regions
 
-- **70 / 71**: Grand Tunis
-- **72**: Northeast (Nabeul, Zaghouan, Bizerte)
-- **73**: Sahel (Sousse, Monastir)
-- **74**: Sfax
-- **75**: Southwest (Gafsa, Tozeur)
-- **76**: Southeast (Gabès, Médenine)
-- **77**: Center-West (Kasserine)
-- **78**: Northwest (Béja, Jendouba)
-- **79**: Grand Tunis
+Supported fixed allocations include 7x, 30–32, and 81200. Only legacy geographic
+prefixes 71–78 have approximate region records. Valid 70/79, 3-prefix, and 81200
+inputs return null from region lookup; the package does not guess their location.
+
+### Lookup uncertainty and immutability
+
+`getDelegationByName('Ezzouhour')` returns null because Tunis and Kasserine both
+have that name. Pass a governorate ID, e.g. `getDelegationByName('Ezzouhour', 17)`,
+or use `getDelegationsByName` to inspect all matches. `Mourouj` is an alias of
+`El Mourouj`, not a duplicate dropdown record.
+
+Postal helpers are approximate: `getGovernorateFromPostalCode('2080')` returns
+null, while `getGovernorateCandidatesFromPostalCode('2080')` returns the possible
+governorates in the shared 20xx block. Syntax validation does not establish code
+assignment. Bank labels and administrative data are historical references; see
+[data provenance and limitations](docs/DATA_SOURCES.md).
+
+Reference arrays/records are readonly and frozen. Copy a record before editing
+it in an application. Singular lookups return null for missing/ambiguous input;
+plural lookups return an empty array.
+
+### Development and compatibility
+
+The installed package supports Node >=18. Use Node 24 for development (`.nvmrc`),
+then `npm ci` and `npm run check`. CI checks packed ESM/CommonJS consumers and
+Node16/NodeNext/bundler declarations, runtime Node 18.0.0/20/22/24, coverage,
+type checking (including tests/config), lint, security audit, and bundle budgets.
 
 ## Contributing
 

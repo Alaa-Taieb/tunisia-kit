@@ -5,17 +5,47 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_call:
+
+permissions:
+  contents: read
 
 jobs:
-  test:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
       - run: npm ci
-      - run: npm run lint
-      - run: npm run coverage
-      - run: npm run build
+      - run: npm run check
+      - run: npm audit --audit-level=low
+      - run: mkdir -p artifacts && npm pack --ignore-scripts --pack-destination artifacts
+      - uses: actions/upload-artifact@v4
+        with:
+          name: package-under-test
+          path: artifacts/*.tgz
+          retention-days: 1
+
+  runtime:
+    needs: validate
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ['18.0.0', '20', '22', '24']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: package-under-test
+          path: artifacts
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm install --prefix /tmp/tunisia-kit-runtime artifacts/*.tgz --ignore-scripts --no-audit --no-fund
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - run: node scripts/test-runtime.mjs /tmp/tunisia-kit-runtime/node_modules/tunisia-kit
