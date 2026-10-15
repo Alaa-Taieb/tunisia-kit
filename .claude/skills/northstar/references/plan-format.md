@@ -9,31 +9,63 @@ or existing ids. Run `northstar plan example` to print a complete example.
   "vision": "# Product — Vision\n…markdown…",
   "specification": "# Product — Specification\n…markdown…",
   "requirements": [
-    { "ref": "auth", "title": "Users can sign in", "kind": "functional", "priority": "must",
-      "description": "…", "acceptance": ["Valid credentials open a session", "Invalid ones are rejected"] }
+    {
+      "ref": "auth",
+      "title": "Users can sign in",
+      "kind": "functional",
+      "priority": "must",
+      "description": "…",
+      "acceptance": ["Valid login opens a session", "Bad login is rejected"]
+    }
   ],
   "milestones": [
-    { "ref": "m1", "title": "Foundation", "goal": "Runnable skeleton with persistence",
-      "exitCriteria": ["App boots", "CI green"] },
+    {
+      "ref": "m1",
+      "title": "Foundation",
+      "goal": "Runnable skeleton with persistence",
+      "exitCriteria": ["App boots", "CI green"]
+    },
     { "ref": "m2", "title": "Core", "goal": "…", "dependsOn": ["m1"] }
   ],
   "features": [
-    { "ref": "f-auth", "title": "Authentication", "milestone": "m2", "requirements": ["auth"] }
+    {
+      "ref": "f-auth",
+      "title": "Authentication",
+      "milestone": "m2",
+      "requirements": ["auth"]
+    }
   ],
   "tasks": [
-    { "ref": "t1", "title": "Project scaffold", "milestone": "m1", "priority": "high",
-      "acceptance": ["`npm test` passes on a clean checkout"] },
-    { "ref": "t2", "title": "Login endpoint", "feature": "f-auth", "requirements": ["auth"], "dependsOn": ["t1"],
-      "acceptance": ["Valid login returns a session", "Invalid login returns 401"] }
+    {
+      "ref": "t1",
+      "title": "Project scaffold",
+      "milestone": "m1",
+      "priority": "high",
+      "acceptance": ["`npm test` passes on a clean checkout"]
+    },
+    {
+      "ref": "t2",
+      "title": "Login endpoint",
+      "feature": "f-auth",
+      "requirements": ["auth"],
+      "dependsOn": ["t1"],
+      "acceptance": ["Valid login returns a session", "Bad login gets 401"]
+    }
   ],
   "decisions": [
-    { "title": "Use SQLite", "decision": "Local SQLite for persistence", "rationale": "Offline-first requirement",
-      "requirements": ["auth"], "alternatives": ["Postgres"] }
+    {
+      "title": "Use SQLite",
+      "decision": "Local SQLite for persistence",
+      "rationale": "Offline-first requirement",
+      "requirements": ["auth"],
+      "alternatives": ["Postgres"]
+    }
   ]
 }
 ```
 
 Fields
+
 - requirement `kind`: functional | nonfunctional | constraint | exclusion. `priority`: must | should | could.
 - task `priority`: critical | high | medium | low. A task needs `feature` (preferred) or `milestone`.
 - task `acceptance`: concrete, checkable statements; evidence is later attached per criterion (AC1, AC2, …).
