@@ -67,7 +67,8 @@ Northstar supplies facts; you supply judgement; the result is stored so the next
 Use when a request is a new feature or changes product direction, constraints or architecture commitments.
 
 1. `northstar change propose --title "..." --classification new_feature|direction_change|extension --proposal "..." --rationale "..." --affects-requirements REQ-001,REQ-004 --affects-milestones MS-002 --benefit "..." --tradeoff "..." [--contradicts-constraint]`
-2. Tell the user in 3–5 lines: what, why, what it affects, trade-offs, and your recommendation.
+2. Show the change card (`northstar report change <CH-id>`, rendered inline; see the skill's *Showing reports in chat*),
+   then tell the user in 3–5 lines: what, why, what it affects, trade-offs, and your recommendation.
    Before approval, run `northstar change impact <CH-id>` and explain the recorded downstream work and checks to revisit.
    Link affected requirements, tasks or milestones when proposing; missing links mean unknown impact. Record semantic
    predictions with repeated `--prediction "..."` flags; these remain attributed harness statements, never verification.

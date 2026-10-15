@@ -13,8 +13,8 @@ Bring an existing repository under Northstar (init --adopt) and print its factua
 ### `northstar inventory [--json]`
 Deterministic facts about the repository (languages, manifests, tests, docs, git history) for adoption.
 
-### `northstar setup [--harness all|codex|claude] [--cli northstar] [--config-dir <claude-account-folder>]`
-Once per machine: teach Codex and every Claude Code account (.claude, .claude_max, ...) about Northstar in every folder, so the agent sets up projects itself.
+### `northstar setup [--harness all|codex|claude] [--cli northstar] [--config-dir <claude-account-folder>] [--no-projects] [--no-commit]`
+Once per machine (and after upgrading): teach Codex and every Claude Code account (.claude, .claude_max, ...) about Northstar in every folder, and refresh (and commit) the generated files in every registered project (--no-projects to skip, --no-commit to leave them uncommitted).
 
 ### `northstar integrate [--harness all|codex|claude] [--no-hooks] [--mcp]`
 (Re)generate AGENTS.md / CLAUDE.md blocks, the shared skill, Claude Code hooks and (with --mcp) .mcp.json.
@@ -183,6 +183,9 @@ Deterministic roadmap facts for reviews: critical path, bottlenecks, blocked cha
 
 ### `northstar roadmap`
 Print the roadmap tree: milestones → features → tasks with statuses and exit criteria.
+
+### `northstar report <status|task|roadmap|change|handoff|review|feedback> [id] [--format html|markdown] [--out <file>]`
+Readable report card for chat: self-contained HTML (render it inline) or markdown. status, task <id>, roadmap, change [id], handoff, review, feedback [id].
 
 ### `northstar feedback add --title <t> --category bug|improvement|feature --observation <what> --impact <effect> --certainty observed|suspected|proposed [--evidence <text>]... [--solution <idea>] [--request-id <retry-key>]`
 Record feedback about Northstar itself, globally, with automatic agent and source-project attribution.

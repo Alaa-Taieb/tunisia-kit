@@ -35,7 +35,7 @@ Exit codes: 0 ok · 2 usage · 3 invalid data · 4 rule violation / approval nee
 | Describes a new product idea (no `.northstar/`) | **Initialize** → `references/workflows.md#initialize` |
 | "Adopt / manage this existing repo" | **Adopt** → `references/workflows.md#adopt` |
 | "Implement X" / "fix Y" / "add Z" | **Do work** (below) |
-| "Where are we?" / "what's left?" | **Status** → `northstar status`, explain plainly (see below) |
+| "Where are we?" / "what's left?" | **Status** → show the status card (`northstar report status`, see *Showing reports in chat*), then explain plainly |
 | "Show me the dashboard" / wants to see progress | `northstar dashboard --background`, then give them the URL it prints (one dashboard shows all their projects) |
 | The user approves, rejects or accepts something | Record it yourself with `--actor human` and `--note`/`--detail` quoting their words |
 | "Review the project" / "are we on track?" | **Review** → `references/workflows.md#review` |
@@ -117,6 +117,30 @@ higher-precedence source authoritative until they decide.
 - Keep this file's guidance short in chat: don't paste specs at the user. Summarise.
 - Make ordinary technical decisions yourself; interrupt the user only for scope, product behaviour,
   important constraints or major architecture.
+
+## Showing reports in chat
+
+Terminal output is hard to read in chat, especially on a phone. Whenever you show the user Northstar state,
+show a **report card** instead of pasting command output:
+
+| Moment | Card |
+|---|---|
+| Status / progress questions, start or end of a work session | `northstar report status` |
+| Roadmap, "what's left?" | `northstar report roadmap` |
+| Asking the user to approve, reject or defer a change | `northstar report change <CH-id>` |
+| Asking for human acceptance, or explaining one task | `northstar report task <ID>` |
+| Handoff written or read | `northstar report handoff` |
+| Project review | `northstar report review` |
+| Northstar feedback inbox | `northstar report feedback [id]` |
+
+- The default output is one self-contained HTML document (inline CSS, no scripts, no external URLs; it follows the
+  host theme in light and dark mode). If your harness can render HTML inline in chat (for example T3 Code `html_render`,
+  Claude artifacts or Codex's HTML preview), render it **unchanged**. Preview first if your harness offers it.
+  `--out <file>` writes it to a file for tools that take a path. MCP: `northstar_report` returns the same content.
+- If HTML cannot be rendered, use `--format markdown` and paste that. Never paste HTML source as text.
+- The card already states the facts. Below it, add only what it cannot: your judgement, your recommendation and
+  the question you need answered (1–3 lines). Don't restate the card.
+- Cards come from records only. They never make anything verified; your own claims still go through the task lifecycle.
 
 ## Explaining the project to the user
 
