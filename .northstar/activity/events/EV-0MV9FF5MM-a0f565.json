@@ -1,0 +1,10 @@
+{
+  "id": "EV-0MV9FF5MM-a0f565",
+  "type": "task.created",
+  "at": "2026-10-15T10:59:19.486Z",
+  "actor": "claude-code",
+  "entityIds": [
+    "NS-003"
+  ],
+  "summary": "Task NS-003 created: Governorates, delegations, banks, landline regions, postal ranges + lookups"
+}

@@ -1,0 +1,11 @@
+{
+  "id": "EV-0MV9FFHI5-bc7da5",
+  "type": "task.verified",
+  "at": "2026-10-15T10:59:34.877Z",
+  "actor": "claude-code",
+  "entityIds": [
+    "NS-004",
+    "MS-001"
+  ],
+  "summary": "Task NS-004 verified: Dual ESM/CJS build, typecheck, lint, 100% coverage, packed-package and runtime checks, CI/publish workflows"
+}

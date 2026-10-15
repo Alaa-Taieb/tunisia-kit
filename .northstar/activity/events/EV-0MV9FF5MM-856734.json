@@ -1,0 +1,10 @@
+{
+  "id": "EV-0MV9FF5MM-856734",
+  "type": "task.created",
+  "at": "2026-10-15T10:59:19.486Z",
+  "actor": "claude-code",
+  "entityIds": [
+    "NS-004"
+  ],
+  "summary": "Task NS-004 created: Dual ESM/CJS build, typecheck, lint, 100% coverage, packed-package and runtime checks, CI/publish workflows"
+}

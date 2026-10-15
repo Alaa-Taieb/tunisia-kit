@@ -1,0 +1,10 @@
+{
+  "id": "EV-0MV9FF5MM-d2a88c",
+  "type": "feature.created",
+  "at": "2026-10-15T10:59:19.486Z",
+  "actor": "claude-code",
+  "entityIds": [
+    "F-003"
+  ],
+  "summary": "Feature F-003 created: Static reference data & lookups"
+}

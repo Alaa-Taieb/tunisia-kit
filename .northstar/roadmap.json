@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "milestones": [
+    {
+      "id": "MS-001",
+      "title": "v1.0.0 — released library",
+      "goal": "Stable, tested, published toolkit (already shipped 2026-10-03)",
+      "order": 0,
+      "exitCriteria": [
+        {
+          "id": "X1",
+          "text": "npm run check passes on a clean checkout",
+          "status": "met",
+          "evidence": "$ npm run check\nshell: bash\nexit 0\n\u001b[32mESM\u001b[39m \u001b[1mdist\\validators\\index.js.map \u001b[22m\u001b[32m69.00 B\u001b[39m\n\u001b[32mESM\u001b[39m \u001b[1mdist\\data\\index.js.map       \u001b[22m\u001b[32m69.00 B\u001b[39m\n\u001b[32mESM\u001b[39m \u001b[1mdist\\chunk-QVNKJTZA.js.map   \u001b[22m\u001b[32m4.47 KB\u001b[39m\n\u001b[32mESM\u001b[39m \u001b[1mdist\\formatters\\index.js.map \u001b[22m\u001b[32m69.00 B\u001b[39m\n\u001b[32mESM\u001b[39m \u001b[1mdist\\chunk-MTS27RFD.js.map   \u001b[22m\u001b[32m8.90 KB\u001b[39m\n\u001b[32mESM\u001b[39m \u001b[1mdist\\chunk-GJZALOLW.js.map   \u001b[22m\u001b[32m5.91 KB\u001b[39m\n\u001b[32mESM\u001b[39m \u001b[1mdist\\chunk-FDLY4T4S.js.map   \u001b[22m\u001b[32m2.17 KB\u001b[39m\n\u001b[32mESM\u001b[39m \u001b[1mdist\\chunk-VU24KDOI.js.map   \u001b[22m\u001b[32m72.07 KB\u001b[39m\n\u001b[32mESM\u001b[39m ⚡️ Build success in 188ms\n\u001b[34mDTS\u001b[39m Build start\n\u001b[32mDTS\u001b[39m ⚡️ Build success in 1333ms\n\u001b[32mDTS\u001b[39m \u001b[1mdist\\index.d.ts             \u001b[22m\u001b[32m801.00 B\u001b[39m\n\u001b[32mDTS\u001b[39m \u001b[1mdist\\data\\index.d.ts        \u001b[22m\u001b[32m3.64 KB\u001b[39m\n\u001b[32mDTS\u001b[39m \u001b[1mdist\\formatters\\index.d.ts  \u001b[22m\u001b[32m1.59 KB\u001b[39m\n\u001b[32mDTS\u001b[39m \u001b[1mdist\\validators\\index.d.ts  \u001b[22m\u001b[32m3.78 KB\u001b[39m\n\u001b[32mDTS\u001b[39m \u001b[1mdist\\index.d.cts            \u001b[22m\u001b[32m804.00 B\u001b[39m\n\u001b[32mDTS\u001b[39m \u001b[1mdist\\data\\index.d.cts       \u001b[22m\u001b[32m3.64 KB\u001b[39m\n\u001b[32mDTS\u001b[39m \u001b[1mdist\\formatters\\index.d.cts \u001b[22m\u001b[32m1.59 KB\u001b[39m\n\u001b[32mDTS\u001b[39m \u001b[1mdist\\validators\\index.d.cts \u001b[22m\u001b[32m3.78 KB\u001b[39m\n\n> tunisia-kit@1.0.0 test:package\n> node scripts/test-package.mjs\n\nindex: 11170 gzip bytes\nvalidators/index: 1571 gzip bytes\nformatters/index: 1027 gzip bytes\ndata/index: 9827 gzip bytes\nPacked consumers passed in Node16, NodeNext, and bundler modes; tree-shaken CIN: 106 bytes.",
+          "by": "claude-code",
+          "at": "2026-10-15T11:00:16.998Z"
+        },
+        {
+          "id": "X2",
+          "text": "Version 1.0.0 published",
+          "status": "met",
+          "evidence": "$ npm view tunisia-kit@1.0.0 version\nshell: bash\nexit 0\n1.0.0",
+          "by": "claude-code",
+          "at": "2026-10-15T11:00:25.578Z"
+        }
+      ],
+      "dependsOn": [],
+      "provenance": "stated"
+    }
+  ],
+  "features": [
+    {
+      "id": "F-001",
+      "title": "Validators",
+      "description": "",
+      "milestoneId": "MS-001",
+      "requirementIds": [
+        "REQ-001",
+        "REQ-007"
+      ],
+      "dependsOn": [],
+      "provenance": "stated",
+      "artifacts": []
+    },
+    {
+      "id": "F-002",
+      "title": "Formatters (FR + AR)",
+      "description": "",
+      "milestoneId": "MS-001",
+      "requirementIds": [
+        "REQ-002"
+      ],
+      "dependsOn": [],
+      "provenance": "stated",
+      "artifacts": []
+    },
+    {
+      "id": "F-003",
+      "title": "Static reference data & lookups",
+      "description": "",
+      "milestoneId": "MS-001",
+      "requirementIds": [
+        "REQ-003",
+        "REQ-007"
+      ],
+      "dependsOn": [],
+      "provenance": "stated",
+      "artifacts": []
+    },
+    {
+      "id": "F-004",
+      "title": "Packaging, CI & release pipeline",
+      "description": "",
+      "milestoneId": "MS-001",
+      "requirementIds": [
+        "REQ-004",
+        "REQ-005",
+        "REQ-006"
+      ],
+      "dependsOn": [],
+      "provenance": "stated",
+      "artifacts": []
+    }
+  ],
+  "history": [
+    {
+      "version": 1,
+      "at": "2026-10-15T10:58:46.219Z",
+      "actor": "claude-code",
+      "reason": "Project initialized"
+    }
+  ]
+}

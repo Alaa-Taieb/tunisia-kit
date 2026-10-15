@@ -1,0 +1,11 @@
+{
+  "id": "EV-0MV9FG1JT-05feee",
+  "type": "task.verified",
+  "at": "2026-10-15T11:00:00.857Z",
+  "actor": "claude-code",
+  "entityIds": [
+    "NS-003",
+    "MS-001"
+  ],
+  "summary": "Task NS-003 verified: Governorates, delegations, banks, landline regions, postal ranges + lookups"
+}

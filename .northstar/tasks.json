@@ -1,0 +1,192 @@
+{
+  "tasks": [
+    {
+      "id": "NS-001",
+      "title": "Validators: CIN, phone, landline, RIB, IBAN, matricule, passport, plate, postal code",
+      "description": "",
+      "featureId": "F-001",
+      "milestoneId": "MS-001",
+      "requirementIds": [],
+      "dependsOn": [],
+      "priority": "medium",
+      "status": "verified",
+      "blockers": [],
+      "planned": true,
+      "acceptance": [
+        {
+          "id": "AC1",
+          "text": "Validator test files pass under npm test"
+        }
+      ],
+      "requiresHumanApproval": false,
+      "commits": [],
+      "files": [],
+      "implementation": {
+        "reportedAt": "2026-10-15T10:59:19.486Z",
+        "by": "claude-code",
+        "summary": "Found during repository analysis (inferred, unverified).",
+        "revision": "7740ad83fb8f502336c6f1d22eff3d10fce7e980+dirty"
+      },
+      "evidence": [
+        {
+          "id": "E1",
+          "kind": "automated",
+          "method": "unit-tests",
+          "result": "pass",
+          "revision": "7740ad83fb8f502336c6f1d22eff3d10fce7e980+dirty",
+          "tree": "935a69bc5fc39f263f3c3417609dc667cdbd34b6",
+          "at": "2026-10-15T10:59:55.574Z",
+          "by": "claude-code",
+          "detail": "$ npx vitest run tests/cin.test.ts tests/phone.test.ts tests/landline.test.ts tests/rib.test.ts tests/iban.test.ts tests/matricule.test.ts tests/passport.test.ts tests/license-plate.test.ts tests/postal-code.test.ts tests/regressions.test.ts\nshell: bash\nexit 0\nRUN  v4.1.11 C:/Users/LITE/tunisia-kit\n\n\n Test Files  10 passed (10)\n      Tests  120 passed (120)\n   Start at  11:59:57\n   Duration  1.64s (transform 139ms, setup 0ms, import 299ms, tests 69ms, environment 1ms)",
+          "criteria": []
+        }
+      ],
+      "decisionIds": [],
+      "provenance": "inferred",
+      "createdAt": "2026-10-15T10:59:19.486Z",
+      "createdBy": "claude-code",
+      "updatedAt": "2026-10-15T10:59:55.574Z"
+    },
+    {
+      "id": "NS-002",
+      "title": "Formatters: phone, landline, IBAN, CIN, currency incl. Arabic variants",
+      "description": "",
+      "featureId": "F-002",
+      "milestoneId": "MS-001",
+      "requirementIds": [],
+      "dependsOn": [],
+      "priority": "medium",
+      "status": "verified",
+      "blockers": [],
+      "planned": true,
+      "acceptance": [
+        {
+          "id": "AC1",
+          "text": "tests/formatters.test.ts passes"
+        }
+      ],
+      "requiresHumanApproval": false,
+      "commits": [],
+      "files": [],
+      "implementation": {
+        "reportedAt": "2026-10-15T10:59:19.486Z",
+        "by": "claude-code",
+        "summary": "Found during repository analysis (inferred, unverified).",
+        "revision": "7740ad83fb8f502336c6f1d22eff3d10fce7e980+dirty"
+      },
+      "evidence": [
+        {
+          "id": "E1",
+          "kind": "automated",
+          "method": "unit-tests",
+          "result": "pass",
+          "revision": "7740ad83fb8f502336c6f1d22eff3d10fce7e980+dirty",
+          "tree": "935a69bc5fc39f263f3c3417609dc667cdbd34b6",
+          "at": "2026-10-15T10:59:59.006Z",
+          "by": "claude-code",
+          "detail": "$ npx vitest run tests/formatters.test.ts\nshell: bash\nexit 0\nRUN  v4.1.11 C:/Users/LITE/tunisia-kit\n\n\n Test Files  1 passed (1)\n      Tests  19 passed (19)\n   Start at  12:00:00\n   Duration  198ms (transform 35ms, setup 0ms, import 62ms, tests 4ms, environment 0ms)",
+          "criteria": []
+        }
+      ],
+      "decisionIds": [],
+      "provenance": "inferred",
+      "createdAt": "2026-10-15T10:59:19.486Z",
+      "createdBy": "claude-code",
+      "updatedAt": "2026-10-15T10:59:59.006Z"
+    },
+    {
+      "id": "NS-003",
+      "title": "Governorates, delegations, banks, landline regions, postal ranges + lookups",
+      "description": "",
+      "featureId": "F-003",
+      "milestoneId": "MS-001",
+      "requirementIds": [],
+      "dependsOn": [],
+      "priority": "medium",
+      "status": "verified",
+      "blockers": [],
+      "planned": true,
+      "acceptance": [
+        {
+          "id": "AC1",
+          "text": "tests/data.test.ts passes"
+        }
+      ],
+      "requiresHumanApproval": false,
+      "commits": [],
+      "files": [],
+      "implementation": {
+        "reportedAt": "2026-10-15T10:59:19.486Z",
+        "by": "claude-code",
+        "summary": "Found during repository analysis (inferred, unverified).",
+        "revision": "7740ad83fb8f502336c6f1d22eff3d10fce7e980+dirty"
+      },
+      "evidence": [
+        {
+          "id": "E1",
+          "kind": "automated",
+          "method": "unit-tests",
+          "result": "pass",
+          "revision": "7740ad83fb8f502336c6f1d22eff3d10fce7e980+dirty",
+          "tree": "935a69bc5fc39f263f3c3417609dc667cdbd34b6",
+          "at": "2026-10-15T11:00:00.857Z",
+          "by": "claude-code",
+          "detail": "$ npx vitest run tests/data.test.ts\nshell: bash\nexit 0\nRUN  v4.1.11 C:/Users/LITE/tunisia-kit\n\n\n Test Files  1 passed (1)\n      Tests  28 passed (28)\n   Start at  12:00:02\n   Duration  233ms (transform 66ms, setup 0ms, import 93ms, tests 7ms, environment 0ms)",
+          "criteria": []
+        }
+      ],
+      "decisionIds": [],
+      "provenance": "inferred",
+      "createdAt": "2026-10-15T10:59:19.486Z",
+      "createdBy": "claude-code",
+      "updatedAt": "2026-10-15T11:00:00.857Z"
+    },
+    {
+      "id": "NS-004",
+      "title": "Dual ESM/CJS build, typecheck, lint, 100% coverage, packed-package and runtime checks, CI/publish workflows",
+      "description": "",
+      "featureId": "F-004",
+      "milestoneId": "MS-001",
+      "requirementIds": [],
+      "dependsOn": [],
+      "priority": "medium",
+      "status": "verified",
+      "blockers": [],
+      "planned": true,
+      "acceptance": [
+        {
+          "id": "AC1",
+          "text": "npm run check passes"
+        }
+      ],
+      "requiresHumanApproval": false,
+      "commits": [],
+      "files": [],
+      "implementation": {
+        "reportedAt": "2026-10-15T10:59:19.486Z",
+        "by": "claude-code",
+        "summary": "Found during repository analysis (inferred, unverified).",
+        "revision": "7740ad83fb8f502336c6f1d22eff3d10fce7e980+dirty"
+      },
+      "evidence": [
+        {
+          "id": "E1",
+          "kind": "automated",
+          "method": "ci",
+          "result": "pass",
+          "revision": "7740ad83fb8f502336c6f1d22eff3d10fce7e980+dirty",
+          "tree": "935a69bc5fc39f263f3c3417609dc667cdbd34b6",
+          "at": "2026-10-15T10:59:34.877Z",
+          "by": "claude-code",
+          "detail": "$ npm run check\nshell: bash\nexit 0\n\u001b[32mESM\u001b[39m \u001b[1mdist\\chunk-MTS27RFD.js.map   \u001b[22m\u001b[32m8.90 KB\u001b[39m\n\u001b[32mESM\u001b[39m \u001b[1mdist\\chunk-GJZALOLW.js.map   \u001b[22m\u001b[32m5.91 KB\u001b[39m\n\u001b[32mESM\u001b[39m \u001b[1mdist\\chunk-FDLY4T4S.js.map   \u001b[22m\u001b[32m2.17 KB\u001b[39m\n\u001b[32mESM\u001b[39m \u001b[1mdist\\chunk-QVNKJTZA.js.map   \u001b[22m\u001b[32m4.47 KB\u001b[39m\n\u001b[32mESM\u001b[39m \u001b[1mdist\\chunk-VU24KDOI.js.map   \u001b[22m\u001b[32m72.07 KB\u001b[39m\n\u001b[32mESM\u001b[39m \u001b[1mdist\\data\\index.js.map       \u001b[22m\u001b[32m69.00 B\u001b[39m\n\u001b[32mESM\u001b[39m \u001b[1mdist\\formatters\\index.js.map \u001b[22m\u001b[32m69.00 B\u001b[39m\n\u001b[32mESM\u001b[39m \u001b[1mdist\\validators\\index.js.map \u001b[22m\u001b[32m69.00 B\u001b[39m\n\u001b[32mESM\u001b[39m ⚡️ Build success in 153ms\n\u001b[34mDTS\u001b[39m Build start\n\u001b[32mDTS\u001b[39m ⚡️ Build success in 1412ms\n\u001b[32mDTS\u001b[39m \u001b[1mdist\\index.d.ts             \u001b[22m\u001b[32m801.00 B\u001b[39m\n\u001b[32mDTS\u001b[39m \u001b[1mdist\\data\\index.d.ts        \u001b[22m\u001b[32m3.64 KB\u001b[39m\n\u001b[32mDTS\u001b[39m \u001b[1mdist\\formatters\\index.d.ts  \u001b[22m\u001b[32m1.59 KB\u001b[39m\n\u001b[32mDTS\u001b[39m \u001b[1mdist\\validators\\index.d.ts  \u001b[22m\u001b[32m3.78 KB\u001b[39m\n\u001b[32mDTS\u001b[39m \u001b[1mdist\\index.d.cts            \u001b[22m\u001b[32m804.00 B\u001b[39m\n\u001b[32mDTS\u001b[39m \u001b[1mdist\\data\\index.d.cts       \u001b[22m\u001b[32m3.64 KB\u001b[39m\n\u001b[32mDTS\u001b[39m \u001b[1mdist\\formatters\\index.d.cts \u001b[22m\u001b[32m1.59 KB\u001b[39m\n\u001b[32mDTS\u001b[39m \u001b[1mdist\\validators\\index.d.cts \u001b[22m\u001b[32m3.78 KB\u001b[39m\n\n> tunisia-kit@1.0.0 test:package\n> node scripts/test-package.mjs\n\nindex: 11170 gzip bytes\nvalidators/index: 1571 gzip bytes\nformatters/index: 1027 gzip bytes\ndata/index: 9827 gzip bytes\nPacked consumers passed in Node16, NodeNext, and bundler modes; tree-shaken CIN: 106 bytes.",
+          "criteria": []
+        }
+      ],
+      "decisionIds": [],
+      "provenance": "inferred",
+      "createdAt": "2026-10-15T10:59:19.486Z",
+      "createdBy": "claude-code",
+      "updatedAt": "2026-10-15T10:59:34.877Z"
+    }
+  ]
+}

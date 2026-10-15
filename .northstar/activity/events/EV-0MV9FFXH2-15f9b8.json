@@ -1,0 +1,11 @@
+{
+  "id": "EV-0MV9FFXH2-15f9b8",
+  "type": "task.verified",
+  "at": "2026-10-15T10:59:55.574Z",
+  "actor": "claude-code",
+  "entityIds": [
+    "NS-001",
+    "MS-001"
+  ],
+  "summary": "Task NS-001 verified: Validators: CIN, phone, landline, RIB, IBAN, matricule, passport, plate, postal code"
+}

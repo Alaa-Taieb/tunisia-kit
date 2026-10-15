@@ -1,0 +1,10 @@
+{
+  "id": "EV-0MV9FF5MM-f900ba",
+  "type": "decision.recorded",
+  "at": "2026-10-15T10:59:19.486Z",
+  "actor": "claude-code",
+  "entityIds": [
+    "DEC-005"
+  ],
+  "summary": "Decision DEC-005: Pinned phone metadata from libphonenumber"
+}

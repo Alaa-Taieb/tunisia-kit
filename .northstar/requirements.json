@@ -1,0 +1,103 @@
+{
+  "requirements": [
+    {
+      "id": "REQ-001",
+      "title": "Validate Tunisian identifiers",
+      "description": "Validators for CIN, mobile, landline, RIB (mod 97), IBAN (ISO 7064), matricule fiscale, passport, license plate and postal code.",
+      "kind": "functional",
+      "priority": "must",
+      "status": "approved",
+      "acceptance": [
+        "Each validator accepts documented valid inputs and rejects malformed ones, as covered by tests/"
+      ],
+      "provenance": "inferred",
+      "createdAt": "2026-10-15T10:59:19.486Z",
+      "updatedAt": "2026-10-15T10:59:19.486Z"
+    },
+    {
+      "id": "REQ-002",
+      "title": "Format Tunisian data",
+      "description": "Formatters for phone, landline, IBAN, CIN and currency, including Arabic-Indic digit variants.",
+      "kind": "functional",
+      "priority": "must",
+      "status": "approved",
+      "acceptance": [
+        "Formatters produce documented outputs and return safe values for invalid input"
+      ],
+      "provenance": "inferred",
+      "createdAt": "2026-10-15T10:59:19.486Z",
+      "updatedAt": "2026-10-15T10:59:19.486Z"
+    },
+    {
+      "id": "REQ-003",
+      "title": "Bilingual reference data",
+      "description": "Immutable governorate, delegation, bank, landline-region and postal-range data with lookups; French and Arabic labels.",
+      "kind": "functional",
+      "priority": "must",
+      "status": "approved",
+      "acceptance": [
+        "24 governorates and canonical delegations with stable IDs",
+        "Data integrity tests pass"
+      ],
+      "provenance": "inferred",
+      "createdAt": "2026-10-15T10:59:19.486Z",
+      "updatedAt": "2026-10-15T10:59:19.486Z"
+    },
+    {
+      "id": "REQ-004",
+      "title": "Zero runtime dependencies, tree-shakeable",
+      "description": "No runtime dependencies; sideEffects false; small bundle.",
+      "kind": "constraint",
+      "priority": "must",
+      "status": "approved",
+      "acceptance": [
+        "package.json has no dependencies field entries"
+      ],
+      "provenance": "inferred",
+      "createdAt": "2026-10-15T10:59:19.486Z",
+      "updatedAt": "2026-10-15T10:59:19.486Z"
+    },
+    {
+      "id": "REQ-005",
+      "title": "Typed dual ESM/CJS distribution",
+      "description": "Ship ESM and CommonJS builds with .d.ts/.d.cts for every subpath export; supports Node >= 18.",
+      "kind": "nonfunctional",
+      "priority": "must",
+      "status": "approved",
+      "acceptance": [
+        "Packed package passes ESM and CommonJS consumer tests"
+      ],
+      "provenance": "inferred",
+      "createdAt": "2026-10-15T10:59:19.486Z",
+      "updatedAt": "2026-10-15T10:59:19.486Z"
+    },
+    {
+      "id": "REQ-006",
+      "title": "100% test coverage gate",
+      "description": "CI fails below 100% coverage.",
+      "kind": "nonfunctional",
+      "priority": "must",
+      "status": "approved",
+      "acceptance": [
+        "npm run coverage passes the 100% threshold"
+      ],
+      "provenance": "inferred",
+      "createdAt": "2026-10-15T10:59:19.486Z",
+      "updatedAt": "2026-10-15T10:59:19.486Z"
+    },
+    {
+      "id": "REQ-007",
+      "title": "Documented validation scope and data provenance",
+      "description": "Data sources and limitations are documented; validators do not claim existence of real entities.",
+      "kind": "constraint",
+      "priority": "must",
+      "status": "approved",
+      "acceptance": [
+        "docs/DATA_SOURCES.md lists sources and limitations"
+      ],
+      "provenance": "inferred",
+      "createdAt": "2026-10-15T10:59:19.486Z",
+      "updatedAt": "2026-10-15T10:59:19.486Z"
+    }
+  ]
+}

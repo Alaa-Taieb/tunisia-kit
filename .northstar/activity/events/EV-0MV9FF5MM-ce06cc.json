@@ -1,0 +1,10 @@
+{
+  "id": "EV-0MV9FF5MM-ce06cc",
+  "type": "requirement.added",
+  "at": "2026-10-15T10:59:19.486Z",
+  "actor": "claude-code",
+  "entityIds": [
+    "REQ-007"
+  ],
+  "summary": "Requirement REQ-007 added: Documented validation scope and data provenance"
+}

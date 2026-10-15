@@ -1,0 +1,29 @@
+{
+  "name": "tunisia-kit",
+  "idea": "A type-safe, zero-dependency npm toolkit for validating and formatting Tunisian data (CIN, phone, landline, RIB, IBAN, matricule, passport, license plate, postal code, currency) plus bilingual static reference data",
+  "origin": "adopted",
+  "idPrefix": "NS",
+  "cli": "northstar",
+  "createdAt": "2026-10-15T10:58:46.219Z",
+  "createdBy": "claude-code",
+  "vision": {
+    "status": "approved",
+    "version": 1,
+    "approvedAt": "2026-10-15T11:07:17.311Z",
+    "approvedBy": "human",
+    "sha256": "cf13f05dfe8cb4aaad896390962fe4c5b5c224b86f49b7f5df0b93e638c89908",
+    "history": [
+      {
+        "version": 1,
+        "file": "vision-history/v1.md",
+        "sha256": "cf13f05dfe8cb4aaad896390962fe4c5b5c224b86f49b7f5df0b93e638c89908",
+        "approvedAt": "2026-10-15T11:07:17.311Z",
+        "approvedBy": "human"
+      }
+    ]
+  },
+  "specification": {
+    "sha256": "b5631d1aac51bdc79db19c9c8528b530e603511c23ad2f0c7e4b30d8bab75cbc",
+    "baselinedAt": "2026-10-15T11:07:17.311Z"
+  }
+}

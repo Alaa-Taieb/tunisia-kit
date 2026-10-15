@@ -1,0 +1,10 @@
+{
+  "id": "EV-0MV9FF5MM-570721",
+  "type": "requirement.added",
+  "at": "2026-10-15T10:59:19.486Z",
+  "actor": "claude-code",
+  "entityIds": [
+    "REQ-006"
+  ],
+  "summary": "Requirement REQ-006 added: 100% test coverage gate"
+}

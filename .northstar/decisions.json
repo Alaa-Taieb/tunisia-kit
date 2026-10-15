@@ -1,0 +1,70 @@
+{
+  "decisions": [
+    {
+      "id": "DEC-001",
+      "title": "Zero dependencies",
+      "decision": "All logic hand-written; no runtime deps",
+      "rationale": "Small bundle, supply-chain safety, compatibility (journal 2026-01-11)",
+      "status": "active",
+      "requirementIds": [
+        "REQ-004"
+      ],
+      "alternatives": [],
+      "decidedAt": "2026-10-15T10:59:19.486Z",
+      "decidedBy": "claude-code"
+    },
+    {
+      "id": "DEC-002",
+      "title": "Modular subpath exports",
+      "decision": "Expose /validators, /formatters, /data",
+      "rationale": "Tree-shaking (journal 2026-01-11)",
+      "status": "active",
+      "requirementIds": [
+        "REQ-005"
+      ],
+      "alternatives": [],
+      "decidedAt": "2026-10-15T10:59:19.486Z",
+      "decidedBy": "claude-code"
+    },
+    {
+      "id": "DEC-003",
+      "title": "100% coverage gate",
+      "decision": "CI fails under 100% coverage",
+      "rationale": "Library handles money and identity data (journal 2026-01-11)",
+      "status": "active",
+      "requirementIds": [
+        "REQ-006"
+      ],
+      "alternatives": [],
+      "decidedAt": "2026-10-15T10:59:19.486Z",
+      "decidedBy": "claude-code"
+    },
+    {
+      "id": "DEC-004",
+      "title": "Dual ESM + CJS via tsup",
+      "decision": "Build both formats with per-format declarations",
+      "rationale": "ESM-only build broke CJS/Jest consumers (journal 2026-07-14)",
+      "status": "active",
+      "requirementIds": [
+        "REQ-005"
+      ],
+      "alternatives": [],
+      "decidedAt": "2026-10-15T10:59:19.486Z",
+      "decidedBy": "claude-code"
+    },
+    {
+      "id": "DEC-005",
+      "title": "Pinned phone metadata from libphonenumber",
+      "decision": "Derive phone allocations from pinned libphonenumber TN metadata; provider lookup is prefix-only with MNP caveat",
+      "rationale": "Replace guesses with a sourced reference (CHANGELOG 1.0.0, DATA_SOURCES)",
+      "status": "active",
+      "requirementIds": [
+        "REQ-001",
+        "REQ-007"
+      ],
+      "alternatives": [],
+      "decidedAt": "2026-10-15T10:59:19.486Z",
+      "decidedBy": "claude-code"
+    }
+  ]
+}

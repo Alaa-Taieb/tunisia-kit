@@ -1,0 +1,10 @@
+{
+  "id": "EV-0MV9FF5MM-55079f",
+  "type": "feature.created",
+  "at": "2026-10-15T10:59:19.486Z",
+  "actor": "claude-code",
+  "entityIds": [
+    "F-002"
+  ],
+  "summary": "Feature F-002 created: Formatters (FR + AR)"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "EV-0MV9FF5MM-dc19de",
+  "type": "requirement.added",
+  "at": "2026-10-15T10:59:19.486Z",
+  "actor": "claude-code",
+  "entityIds": [
+    "REQ-005"
+  ],
+  "summary": "Requirement REQ-005 added: Typed dual ESM/CJS distribution"
+}

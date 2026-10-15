@@ -1,0 +1,11 @@
+{
+  "id": "EV-0MV9FG04E-04475e",
+  "type": "task.verified",
+  "at": "2026-10-15T10:59:59.006Z",
+  "actor": "claude-code",
+  "entityIds": [
+    "NS-002",
+    "MS-001"
+  ],
+  "summary": "Task NS-002 verified: Formatters: phone, landline, IBAN, CIN, currency incl. Arabic variants"
+}

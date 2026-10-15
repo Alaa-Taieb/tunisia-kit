@@ -1,0 +1,14 @@
+{
+  "id": "EV-0MV9FF5MM-130ba8",
+  "type": "plan.imported",
+  "at": "2026-10-15T10:59:19.486Z",
+  "actor": "claude-code",
+  "entityIds": [
+    "MS-001",
+    "F-001",
+    "F-002",
+    "F-003",
+    "F-004"
+  ],
+  "summary": "Plan imported: 7 requirements, 1 milestones, 4 features, 4 tasks"
+}

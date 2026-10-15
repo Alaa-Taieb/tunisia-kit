@@ -1,0 +1,10 @@
+{
+  "id": "EV-0MV9FF5MM-384b4d",
+  "type": "task.created",
+  "at": "2026-10-15T10:59:19.486Z",
+  "actor": "claude-code",
+  "entityIds": [
+    "NS-002"
+  ],
+  "summary": "Task NS-002 created: Formatters: phone, landline, IBAN, CIN, currency incl. Arabic variants"
+}

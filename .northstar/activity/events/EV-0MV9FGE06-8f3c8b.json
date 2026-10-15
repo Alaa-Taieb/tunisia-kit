@@ -1,0 +1,10 @@
+{
+  "id": "EV-0MV9FGE06-8f3c8b",
+  "type": "milestone.criterion",
+  "at": "2026-10-15T11:00:16.998Z",
+  "actor": "claude-code",
+  "entityIds": [
+    "MS-001"
+  ],
+  "summary": "MS-001 exit criterion X1 met: npm run check passes on a clean checkout"
+}
