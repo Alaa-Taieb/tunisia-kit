@@ -1,0 +1,12 @@
+{
+  "id": "EV-0MVB6X1V0-f18d68",
+  "type": "task.verified",
+  "at": "2026-10-16T16:36:50.220Z",
+  "actor": "claude-code",
+  "session": "d6b80cd3-9a3f-43b3-be81-5ecf9322454d",
+  "entityIds": [
+    "NS-005",
+    "MS-001"
+  ],
+  "summary": "Task NS-005 verified: Audit and fix data/behaviour errors (currency, docs, reference data)"
+}

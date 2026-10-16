@@ -35,7 +35,29 @@ describe('BANKS', () => {
     expect(BANKS.length).toBeGreaterThan(0);
     const biat = BANKS.find((b) => b.abbrev === 'BIAT');
     expect(biat).toBeDefined();
-    expect(biat?.code).toBe('10');
+    expect(biat?.code).toBe('08');
+  });
+
+  it('matches Banque Centrale de Tunisie bank codes for major banks', () => {
+    const expected: Record<string, string> = {
+      '01': 'ATB',
+      '03': 'BNA',
+      '04': 'ATT',
+      '07': 'AB',
+      '08': 'BIAT',
+      '10': 'STB',
+      '11': 'UBCI',
+      '12': 'UIB',
+      '14': 'BH',
+      '17': 'CCP',
+      '20': 'BTK',
+      '25': 'BZ',
+      '32': 'ABT',
+      '47': 'WIB'
+    };
+    for (const [code, abbrev] of Object.entries(expected)) {
+      expect(BANKS.find((b) => b.code === code)?.abbrev, code).toBe(abbrev);
+    }
   });
 
   it('includes newly added banks', () => {
@@ -51,10 +73,10 @@ describe('BANKS', () => {
 
 describe('getBankFromRIB', () => {
   it('returns bank name for valid codes', () => {
-    expect(getBankFromRIB(validRIB('100050000000000000'))).toBe(
+    expect(getBankFromRIB(validRIB('080050000000000000'))).toBe(
       'Banque Internationale Arabe de Tunisie (BIAT)'
     );
-    expect(getBankFromRIB(validRIB('020000000000000000'))).toBe(
+    expect(getBankFromRIB(validRIB('100050000000000000'))).toBe(
       'Société Tunisienne de Banque (STB)'
     );
   });
@@ -64,7 +86,7 @@ describe('getBankFromRIB', () => {
   });
 
   it('recognizes newly added banks', () => {
-    expect(getBankFromRIB(validRIB('480000000000000000'))).toBe(
+    expect(getBankFromRIB(validRIB('270000000000000000'))).toBe(
       'Banque Tunisienne de Solidarité (BTS)'
     );
   });
@@ -76,17 +98,13 @@ describe('getBankFromRIB', () => {
 
 describe('getBankFromIBAN', () => {
   it('returns bank name for valid IBANs', () => {
-    expect(getBankFromIBAN('TN5910005000000000000049')).toBe(
-      'Banque Internationale Arabe de Tunisie (BIAT)'
-    );
-    expect(getBankFromIBAN('tn5910005000000000000049')).toBe(
-      'Banque Internationale Arabe de Tunisie (BIAT)'
-    );
+    expect(getBankFromIBAN('TN5910005000000000000049')).toBe('Société Tunisienne de Banque (STB)');
+    expect(getBankFromIBAN('tn5910005000000000000049')).toBe('Société Tunisienne de Banque (STB)');
   });
 
   it('accepts spaced IBANs', () => {
     expect(getBankFromIBAN('TN59 1000 5000 0000 0000 0049')).toBe(
-      'Banque Internationale Arabe de Tunisie (BIAT)'
+      'Société Tunisienne de Banque (STB)'
     );
   });
 
@@ -158,6 +176,20 @@ describe('getDelegationsByGovernorate', () => {
       (_, i) => getDelegationsByGovernorate(i + 1).length
     ).reduce((a, b) => a + b, 0);
     expect(total).toBe(DELEGATIONS.length);
+  });
+
+  it('matches the INS 2024 census delegation count per governorate', () => {
+    // Institut National de la Statistique, RGPH 2024: 279 delegations.
+    const expected = [
+      21, 7, 12, 8, 16, 6, 14, 9, 9, 12, 11, 16, 13, 13, 16, 13, 13, 14, 13, 9, 8, 13, 6, 7
+    ];
+    expect(expected.map((_, i) => getDelegationsByGovernorate(i + 1).length)).toEqual(expected);
+    expect(DELEGATIONS).toHaveLength(279);
+  });
+
+  it('keeps former sector records as aliases of their delegation', () => {
+    expect(getDelegationByName('Sidi Bou Said')?.id).toBe('tn-01-carthage');
+    expect(getDelegationByName('Den Den')?.id).toBe('tn-04-manouba');
   });
 });
 

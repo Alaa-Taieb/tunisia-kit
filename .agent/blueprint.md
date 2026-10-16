@@ -27,7 +27,7 @@
 - [x] `formatPhone(str)` - Format to `22 555 111`
 - [x] `formatPhoneIntl(str)` - Format to `+216 22 555 111`
 - [x] `formatCurrency(num)` - Format to `1 250,500 TND` with millimes
-- [x] `formatCurrencyAr(num)` - Format to `١ ٢٥٠،٥٠٠ د.ت` (Arabic-Indic digits)
+- [x] `formatCurrencyAr(num)` - Format to `١ ٢٥٠٫٥٠٠ د.ت` (Arabic-Indic digits)
 - [x] `formatPhoneAr(str)` - Format to `٢٢ ٥٥٥ ١١١` (Arabic-Indic digits)
 - [x] `formatCIN(str)` - Ensure 8-digit padding
 

@@ -79,14 +79,18 @@ describe('formatting without data loss', () => {
 
   it('handles huge, negative, rounded, zero, and invalid currency amounts', () => {
     expect(kit.formatCurrency(1e21)).toBe('1 000 000 000 000 000 000 000,000 TND');
-    expect(kit.formatCurrencyAr(1e21)).toBe('١ ٠٠٠ ٠٠٠ ٠٠٠ ٠٠٠ ٠٠٠ ٠٠٠ ٠٠٠،٠٠٠ د.ت');
+    expect(kit.formatCurrencyAr(1e21)).toBe('١ ٠٠٠ ٠٠٠ ٠٠٠ ٠٠٠ ٠٠٠ ٠٠٠ ٠٠٠٫٠٠٠ د.ت');
     for (const amount of [1e22, -1e21, Number.MAX_VALUE]) {
       expect(kit.formatCurrency(amount)).toMatch(/,\d{3} TND$/);
-      expect(kit.formatCurrencyAr(amount)).toMatch(/،[٠-٩]{3} د\.ت$/);
+      expect(kit.formatCurrencyAr(amount)).toMatch(/٫[٠-٩]{3} د\.ت$/);
     }
     expect(kit.formatCurrency(-1250.5)).toBe('-1 250,500 TND');
     expect(kit.formatCurrency(1.2345)).toBe('1,235 TND');
     expect(kit.formatCurrency(0)).toBe('0,000 TND');
+    expect(kit.formatCurrency(-0)).toBe('0,000 TND');
+    expect(kit.formatCurrency(-0.0004)).toBe('0,000 TND');
+    expect(kit.formatCurrency(-0.0005)).toBe('-0,001 TND');
+    expect(kit.formatCurrencyAr(-0)).toBe('٠٫٠٠٠ د.ت');
     for (const input of [NaN, Infinity, -Infinity, null, undefined, '1', {}]) {
       expect(kit.formatCurrency(input)).toBe('');
       expect(kit.formatCurrencyAr(input)).toBe('');
@@ -121,8 +125,14 @@ describe('sourced phone allocations and shared parsing', () => {
       expect(kit.isValidLandline(phone)).toBe(false);
       expect(kit.getRegionFromLandline(phone)).toBeNull();
     }
-    for (const phone of ['45123456', '46123456', '48123456']) {
+    for (const phone of ['46123456', '48123456']) {
       expect(kit.getPhoneProvider(phone)).toBe('Ooredoo');
+    }
+    // 45 is the Watany Ettisalat MVNO block, not Ooredoo.
+    expect(kit.isValidPhone('45123456')).toBe(true);
+    expect(kit.getPhoneProvider('45123456')).toBeNull();
+    for (const phone of ['41123456', '43123456', '47123456']) {
+      expect(kit.getPhoneProvider(phone)).toBe('Tunisie Telecom');
     }
     expect(kit.getPhoneProvider('31123456')).toBeNull();
     expect(kit.getPhoneProvider('49123456')).toBeNull();

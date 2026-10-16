@@ -7,6 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-10-16
+
+### Fixed
+
+- `BANKS`: replace the shuffled bank-code table with Banque Centrale de Tunisie
+  codes (e.g. BIAT 08, STB 10, Attijari 04, UBCI 11, BH Bank 14, La Poste 17,
+  Zitouna 25, Al Baraka 32, Wifak 47). Unsourced codes 48–53 are removed and
+  missing codes (BFT, BTS 27, ABC, BFPME 29, NAIB 33, TFB 72, TIB 73, …) added.
+  `getBankFromRIB`/`getBankFromIBAN` now return the correct bank.
+- `LANDLINE_REGIONS`: 75 covers Gabès, Médenine, Tataouine and Kebili; 76 covers
+  Gafsa, Tozeur and Sidi Bouzid; 77 covers Kairouan and Kasserine.
+- `getPhoneProvider`: prefix 45 (Watany Ettisalat MVNO) returns null instead of
+  Ooredoo, matching the pinned carrier data.
+- `DELEGATIONS`: align with the INS 2024 census (279 delegations). Add the
+  missing Le Kram, Mohamedia and Zarzouna and the 15 delegations created since 2012. Sidi Bou Said and Den Den are sectors, so their records
+  (`tn-01-sidi-bou-said`, `tn-04-den-den`) are removed and kept as lookup aliases
+  of Carthage and Manouba. Correct Arabic names of Hidra (حيدرة), Akouda (أكودة)
+  and Hammam Ghezaz (حمام الأغزاز).
+- `isValidLicensePlate`: accept 1–3 digit series and 1–4 digit numbers
+  (e.g. `76 تونس 472`); support the real régime suspensif (`ن ت`/`RS`),
+  motorcycle (`د ن`), tractor (`ج ف`) and CD/CMD/MD/MC/CC/PAT layouts. Remove the
+  unsourced `MN`, `MF`, `RB`, `SD`, `TQ`, `01 TRAC 1234` and `RS12345AB` patterns.
+- `formatCurrency`: negative zero and negatives that round to zero no longer
+  display as `-0,000 TND`.
+- `formatCurrencyAr`: use the Arabic decimal separator `٫` (U+066B) instead of
+  the Arabic comma `،`.
+- README: prefix 70 is no longer described as a Tunis landline.
+
 ## [1.0.0] - 2026-10-03
 
 ### Fixed

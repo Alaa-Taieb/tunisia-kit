@@ -1,0 +1,15 @@
+{
+  "id": "EV-0MVB6E84A-17b539",
+  "type": "task.started",
+  "at": "2026-10-16T16:22:11.866Z",
+  "actor": "claude-code",
+  "session": "d6b80cd3-9a3f-43b3-be81-5ecf9322454d",
+  "entityIds": [
+    "NS-005",
+    "MS-001"
+  ],
+  "summary": "claude-code started NS-005: Audit and fix data/behaviour errors (currency, docs, reference data)",
+  "data": {
+    "branch": "main"
+  }
+}

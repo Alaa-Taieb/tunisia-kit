@@ -64,8 +64,8 @@ describe('formatCurrency', () => {
   });
 
   it('formats with Arabic-Indic digits', () => {
-    expect(formatCurrencyAr(1250.5)).toBe('١ ٢٥٠،٥٠٠ د.ت');
-    expect(formatCurrencyAr(0)).toBe('٠،٠٠٠ د.ت');
+    expect(formatCurrencyAr(1250.5)).toBe('١ ٢٥٠٫٥٠٠ د.ت');
+    expect(formatCurrencyAr(0)).toBe('٠٫٠٠٠ د.ت');
   });
 
   it('handles non-finite Arabic values', () => {

@@ -39,14 +39,14 @@ Une boîte à outils sûre par les types, sans dépendances, pour valider et for
 
 ## Fonctionnalités
 
-|                          |                                                                                                                         |
-| ------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
-| ✅ **Validateurs**       | CIN, téléphone, ligne fixe, RIB, IBAN, matricule, passeport, plaque d'immatriculation, code postal                      |
-| 🔁 **Mise en forme**     | Téléphone, ligne fixe, IBAN, devise (FR + AR), CIN — avec chiffres arabes-indiens                                       |
-| 🗂️ **Données statiques** | 24 gouvernorats, 263 délégations avec identifiants/alias, références bancaires historiques et recherches approximatives |
-| 🇫🇷🇹🇳 **Bilingue**        | Libellés en français et en arabe pour les gouvernorats et délégations                                                   |
-| 🪶 **Sans dép. & léger** | Aucune dépendance au runtime, tree-shakeable, sans effet de bord                                                        |
-| 🧪 **Entièrement testé** | Couverture de tests à 100 %, entièrement typé en TypeScript                                                             |
+|                          |                                                                                                                       |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| ✅ **Validateurs**       | CIN, téléphone, ligne fixe, RIB, IBAN, matricule, passeport, plaque d'immatriculation, code postal                    |
+| 🔁 **Mise en forme**     | Téléphone, ligne fixe, IBAN, devise (FR + AR), CIN — avec chiffres arabes-indiens                                     |
+| 🗂️ **Données statiques** | 24 gouvernorats, 279 délégations (INS 2024) avec identifiants/alias, codes bancaires BCT et recherches approximatives |
+| 🇫🇷🇹🇳 **Bilingue**        | Libellés en français et en arabe pour les gouvernorats et délégations                                                 |
+| 🪶 **Sans dép. & léger** | Aucune dépendance au runtime, tree-shakeable, sans effet de bord                                                      |
+| 🧪 **Entièrement testé** | Couverture de tests à 100 %, entièrement typé en TypeScript                                                           |
 
 ## Installation
 
@@ -78,7 +78,7 @@ import {
 
 isValidCIN('12345678'); // true
 isValidPhone('22555111'); // true (Ooredoo mobile)
-isValidLandline('70123456'); // true (Tunis landline, prefix 70)
+isValidLandline('70123456'); // true (ligne fixe ; le préfixe 70 n'a pas de région associée)
 isValidPostalCode('1000'); // true
 isValidRIB('10005000000000000049'); // true (valid RIB)
 isValidIBAN('TN5910005000000000000049'); // true (valid IBAN)
@@ -106,8 +106,8 @@ import {
   getGovernorateFromPostalCode
 } from 'tunisia-kit';
 
-getBankFromRIB('10005000000000000049'); // → "Banque Internationale Arabe de Tunisie (BIAT)"
-getBankFromIBAN('TN5910005000000000000049'); // → "Banque Internationale Arabe de Tunisie (BIAT)"
+getBankFromRIB('10005000000000000049'); // → "Société Tunisienne de Banque (STB)"
+getBankFromIBAN('TN5910005000000000000049'); // → "Société Tunisienne de Banque (STB)"
 getRegionFromLandline('71234567'); // → { prefix: '71', name_fr: 'Grand Tunis', ... }
 getGovernorateFromPostalCode('1000'); // → { id: 1, name_fr: 'Tunis', ... }
 ```
@@ -126,7 +126,7 @@ import {
 formatPhone('22555111'); // "22 555 111"
 formatLandline('70123456'); // "70 123 456"
 formatCurrency(1250.5); // "1 250,500 TND"
-formatCurrencyAr(1250.5); // "١ ٢٥٠،٥٠٠ د.ت"
+formatCurrencyAr(1250.5); // "١ ٢٥٠٫٥٠٠ د.ت"
 formatPhoneAr('22555111'); // "٢٢ ٥٥٥ ١١١"
 ```
 
@@ -170,17 +170,17 @@ getDelegationsByGovernorate(1); // Renvoie les délégations de Tunis
 
 ### Validateurs
 
-| Fonction                     | Description                                                                                                                  |
-| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `isValidCIN(cin)`            | Vérifie le format CIN à 8 chiffres, pas son émission                                                                         |
-| `isValidPhone(phone)`        | Valide un numéro mobile avec les préfixes d'opérateurs                                                                       |
-| `isValidLandline(phone)`     | Valide les allocations fixes (7x, certains 3x, 81200) ; recherche de région séparée                                          |
-| `isValidRIB(rib)`            | Valide un compte bancaire à 20 chiffres (Modulo 97)                                                                          |
-| `isValidIBAN(iban)`          | Valide un IBAN tunisien à 24 caractères (ISO 7064)                                                                           |
-| `isValidMatricule(mat)`      | Vérifie le format fiscal, pas le calcul de la lettre de contrôle                                                             |
-| `isValidPassport(pass)`      | Valide un passeport (1 lettre + 7 chiffres, ou 2 lettres + 6 chiffres)                                                       |
-| `isValidLicensePlate(plate)` | Valide une plaque d'immatriculation (standard, diplomatique `CD`/`RB`/`SD`/`TQ`, `RS`, moto `MN`, tracteur `TRAC`, PAT `MF`) |
-| `isValidPostalCode(code)`    | Valide un code postal à 4 chiffres (1000–9299)                                                                               |
+| Fonction                     | Description                                                                                                                         |
+| ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `isValidCIN(cin)`            | Vérifie le format CIN à 8 chiffres, pas son émission                                                                                |
+| `isValidPhone(phone)`        | Valide un numéro mobile avec les préfixes d'opérateurs                                                                              |
+| `isValidLandline(phone)`     | Valide les allocations fixes (7x, certains 3x, 81200) ; recherche de région séparée                                                 |
+| `isValidRIB(rib)`            | Valide un compte bancaire à 20 chiffres (Modulo 97)                                                                                 |
+| `isValidIBAN(iban)`          | Valide un IBAN tunisien à 24 caractères (ISO 7064)                                                                                  |
+| `isValidMatricule(mat)`      | Vérifie le format fiscal, pas le calcul de la lettre de contrôle                                                                    |
+| `isValidPassport(pass)`      | Valide un passeport (1 lettre + 7 chiffres, ou 2 lettres + 6 chiffres)                                                              |
+| `isValidLicensePlate(plate)` | Valide une plaque d'immatriculation (standard `تونس`/`TU`, `RS`/`ن ت`, moto `د ن`, tracteur `ج ف`, `CD`/`CMD`/`MD`/`MC`/`CC`/`PAT`) |
+| `isValidPostalCode(code)`    | Valide un code postal à 4 chiffres (1000–9299)                                                                                      |
 
 ### Recherche d'opérateur
 
@@ -199,7 +199,7 @@ getDelegationsByGovernorate(1); // Renvoie les délégations de Tunis
 | `formatLandlineIntl(str)` | `70123456` | `+216 70 123 456` |
 | `formatIBAN(str)`         | `TN59...`  | `TN59 1000 ...`   |
 | `formatCurrency(num)`     | `1250.5`   | `1 250,500 TND`   |
-| `formatCurrencyAr(num)`   | `1250.5`   | `١ ٢٥٠،٥٠٠ د.ت`   |
+| `formatCurrencyAr(num)`   | `1250.5`   | `١ ٢٥٠٫٥٠٠ د.ت`   |
 | `formatCIN(str)`          | `4555666`  | `04555666`        |
 
 ### Utilitaires
@@ -207,9 +207,9 @@ getDelegationsByGovernorate(1); // Renvoie les délégations de Tunis
 | Fonction                                       | Description                                                              |
 | ---------------------------------------------- | ------------------------------------------------------------------------ |
 | `ribToIBAN(rib)`                               | Convertit un RIB à 20 chiffres en IBAN à 24 caractères                   |
-| `getBankByCode(code)`                          | Référence bancaire historique pour un code à deux chiffres, ou null      |
-| `getBankFromRIB(rib)`                          | Référence bancaire historique pour un RIB avec clé valide                |
-| `getBankFromIBAN(iban)`                        | Référence bancaire historique pour un IBAN tunisien avec clés valides    |
+| `getBankByCode(code)`                          | Banque (code banque BCT) pour un code à deux chiffres, ou null           |
+| `getBankFromRIB(rib)`                          | Libellé bancaire pour un RIB avec clé valide                             |
+| `getBankFromIBAN(iban)`                        | Libellé bancaire pour un IBAN tunisien avec clés valides                 |
 | `getRegionFromLandline(phone)`                 | Récupère les informations de région du préfixe de ligne fixe             |
 | `getGovernorateCandidatesFromPostalCode(code)` | Gouvernorats possibles, recherche approximative                          |
 | `getGovernorateFromPostalCode(code)`           | Gouvernorat approximatif unique ; null si ambigu/non couvert             |
@@ -223,7 +223,7 @@ getDelegationsByGovernorate(1); // Renvoie les délégations de Tunis
 | Export               | Description                                                                  |
 | -------------------- | ---------------------------------------------------------------------------- |
 | `GOVERNORATES`       | Les 24 gouvernorats (id, name_fr, name_ar)                                   |
-| `DELEGATIONS`        | 263 références historiques canoniques, identifiants stables et alias         |
+| `DELEGATIONS`        | 279 délégations (recensement INS 2024), identifiants stables et alias        |
 | `BANKS`              | Codes bancaires pour l'identification des RIB                                |
 | `LANDLINE_REGIONS`   | 8 correspondances géographiques approximatives (71–78)                       |
 | `POSTAL_CODE_RANGES` | Blocs approximatifs non ambigus ; les blocs partagés renvoient des candidats |
@@ -236,10 +236,10 @@ Les allocations suivent les [métadonnées TN sourcées](docs/DATA_SOURCES.md) :
 certains préfixes 3x, 2x/5x/9x et 40–48. Les préfixes 6x et 49 sont rejetés.
 Les libellés d'opérateur dérivés du préfixe suivent des règles plus précises :
 
-- **Tunisie Telecom** : 9x et 4x sauf 45/46/48
-- **Ooredoo** : 2x, 45, 46, 48
+- **Tunisie Telecom** : 9x, 40–44, 47
+- **Ooredoo** : 2x, 46, 48
 - **Orange** : 5x
-- **Opérateur inconnu dans la référence** : null pour les allocations mobiles 3x
+- **null** : 45 (MVNO Watany Ettisalat) et allocations mobiles 3x
 
 ### Lignes fixes et régions approximatives
 
@@ -258,8 +258,9 @@ une deuxième entrée de liste.
 La recherche postale est approximative : `getGovernorateFromPostalCode('2080')`
 renvoie null ; `getGovernorateCandidatesFromPostalCode('2080')` expose les
 candidats du bloc partagé 20xx. Un format valide ne prouve pas l'attribution
-réelle du code. Les banques et données administratives sont des références
-historiques ; voir les [sources et limites](docs/DATA_SOURCES.md).
+réelle du code. Les codes bancaires suivent la Banque Centrale de Tunisie et les
+délégations le recensement INS 2024, sans être des registres en temps réel ; voir
+les [sources et limites](docs/DATA_SOURCES.md).
 
 Les tableaux et objets de référence sont readonly et gelés. Copiez-les avant
 de les modifier dans l'application. Les recherches singulières renvoient null

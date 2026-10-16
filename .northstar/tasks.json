@@ -247,6 +247,63 @@
       "createdAt": "2026-10-15T10:59:19.486Z",
       "createdBy": "claude-code",
       "updatedAt": "2026-10-15T11:10:57.847Z"
+    },
+    {
+      "id": "NS-005",
+      "title": "Audit and fix data/behaviour errors (currency, docs, reference data)",
+      "description": "Find and fix issues, inconsistencies and wrong data across validators, formatters, reference datasets and docs.",
+      "milestoneId": "MS-001",
+      "requirementIds": [],
+      "dependsOn": [],
+      "priority": "medium",
+      "status": "verified",
+      "blockers": [],
+      "planned": false,
+      "classification": "minor",
+      "acceptance": [
+        {
+          "id": "AC1",
+          "text": "npm run check passes"
+        },
+        {
+          "id": "AC2",
+          "text": "Each corrected dataset entry is backed by a cited source"
+        }
+      ],
+      "requiresHumanApproval": false,
+      "activeHarness": "claude-code",
+      "session": "d6b80cd3-9a3f-43b3-be81-5ecf9322454d",
+      "branch": "main",
+      "workspace": "tunisia-kit",
+      "startedAt": "2026-10-16T16:22:11.866Z",
+      "commits": [],
+      "files": [],
+      "implementation": {
+        "reportedAt": "2026-10-16T16:36:49.908Z",
+        "by": "claude-code",
+        "summary": "Audited package against BCT, INS 2024, libphonenumber, La Poste and plate sources. Fixed bank codes, landline 75/76/77 regions, 45 provider, 279 INS delegations (+sector aliases, Arabic fixes), sourced plate formats, currency -0 and Arabic decimal separator, README/DATA_SOURCES/CHANGELOG.",
+        "revision": "a67720aea84d806a8f3f29d1bc27aa87690071b5+dirty",
+        "tree": "ea5372b69b45ca296bc3404844d962b9517602c8"
+      },
+      "evidence": [
+        {
+          "id": "E1",
+          "kind": "automated",
+          "method": "automated-tests",
+          "result": "pass",
+          "revision": "a67720aea84d806a8f3f29d1bc27aa87690071b5+dirty",
+          "tree": "ea5372b69b45ca296bc3404844d962b9517602c8",
+          "at": "2026-10-16T16:36:50.220Z",
+          "by": "claude-code",
+          "detail": "$ npm run check\nshell: bash\nexit 0\n[32mESM\u001b[39m \u001b[1mdist\\index.js.map            \u001b[22m\u001b[32m69.00 B\u001b[39m\n\u001b[32mESM\u001b[39m \u001b[1mdist\\chunk-BQ2ZKQF5.js.map   \u001b[22m\u001b[32m5.96 KB\u001b[39m\n\u001b[32mESM\u001b[39m \u001b[1mdist\\chunk-BF4GNAUT.js.map   \u001b[22m\u001b[32m8.43 KB\u001b[39m\n\u001b[32mESM\u001b[39m \u001b[1mdist\\chunk-45T34THH.js.map   \u001b[22m\u001b[32m74.97 KB\u001b[39m\n\u001b[32mESM\u001b[39m \u001b[1mdist\\formatters\\index.js.map \u001b[22m\u001b[32m69.00 B\u001b[39m\n\u001b[32mESM\u001b[39m \u001b[1mdist\\chunk-T4YC45GD.js.map   \u001b[22m\u001b[32m2.12 KB\u001b[39m\n\u001b[32mESM\u001b[39m \u001b[1mdist\\chunk-GLS2ICGG.js.map   \u001b[22m\u001b[32m4.37 KB\u001b[39m\n\u001b[32mESM\u001b[39m \u001b[1mdist\\validators\\index.js.map \u001b[22m\u001b[32m69.00 B\u001b[39m\n\u001b[32mESM\u001b[39m ⚡️ Build success in 144ms\n\u001b[34mDTS\u001b[39m Build start\n\u001b[32mDTS\u001b[39m ⚡️ Build success in 1314ms\n\u001b[32mDTS\u001b[39m \u001b[1mdist\\index.d.ts             \u001b[22m\u001b[32m801.00 B\u001b[39m\n\u001b[32mDTS\u001b[39m \u001b[1mdist\\data\\index.d.ts        \u001b[22m\u001b[32m3.90 KB\u001b[39m\n\u001b[32mDTS\u001b[39m \u001b[1mdist\\formatters\\index.d.ts  \u001b[22m\u001b[32m1.63 KB\u001b[39m\n\u001b[32mDTS\u001b[39m \u001b[1mdist\\validators\\index.d.ts  \u001b[22m\u001b[32m4.12 KB\u001b[39m\n\u001b[32mDTS\u001b[39m \u001b[1mdist\\index.d.cts            \u001b[22m\u001b[32m804.00 B\u001b[39m\n\u001b[32mDTS\u001b[39m \u001b[1mdist\\data\\index.d.cts       \u001b[22m\u001b[32m3.90 KB\u001b[39m\n\u001b[32mDTS\u001b[39m \u001b[1mdist\\formatters\\index.d.cts \u001b[22m\u001b[32m1.63 KB\u001b[39m\n\u001b[32mDTS\u001b[39m \u001b[1mdist\\validators\\index.d.cts \u001b[22m\u001b[32m4.12 KB\u001b[39m\n\n> tunisia-kit@1.0.0 test:package\n> node scripts/test-package.mjs\n\nindex: 11984 gzip bytes\nvalidators/index: 1725 gzip bytes\nformatters/index: 1042 gzip bytes\ndata/index: 10466 gzip bytes\nPacked consumers passed in Node16, NodeNext, and bundler modes; tree-shaken CIN: 356 bytes.",
+          "criteria": []
+        }
+      ],
+      "decisionIds": [],
+      "provenance": "stated",
+      "createdAt": "2026-10-16T16:22:11.825Z",
+      "createdBy": "claude-code",
+      "updatedAt": "2026-10-16T16:36:50.220Z"
     }
   ]
 }

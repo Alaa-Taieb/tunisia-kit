@@ -11,8 +11,8 @@ describe('isValidLandline', () => {
       expect(isValidLandline('72345678')).toBe(true); // Northeast
       expect(isValidLandline('73456789')).toBe(true); // Sahel
       expect(isValidLandline('74567890')).toBe(true); // Sfax
-      expect(isValidLandline('75678901')).toBe(true); // Southwest
-      expect(isValidLandline('76789012')).toBe(true); // Southeast
+      expect(isValidLandline('75678901')).toBe(true); // South
+      expect(isValidLandline('76789012')).toBe(true); // Southwest
       expect(isValidLandline('77890123')).toBe(true); // Center-West
       expect(isValidLandline('78901234')).toBe(true); // Northwest
     });
@@ -36,8 +36,8 @@ describe('isValidLandline', () => {
 
   describe('invalid landline numbers', () => {
     it('rejects invalid prefixes', () => {
-      expect(isValidLandline('70123456')).toBe(true); // 70 valid (Grand Tunis)
-      expect(isValidLandline('79123456')).toBe(true); // 79 valid (Grand Tunis)
+      expect(isValidLandline('70123456')).toBe(true); // 70 valid, no region mapping
+      expect(isValidLandline('79123456')).toBe(true); // 79 valid, no region mapping
       expect(isValidLandline('22555111')).toBe(false); // Mobile prefix
       expect(isValidLandline('98765432')).toBe(false); // Mobile prefix
     });
@@ -133,6 +133,27 @@ describe('LANDLINE_REGIONS', () => {
   it('has geographic prefixes 71-78', () => {
     const prefixes = LANDLINE_REGIONS.map((r) => r.prefix).sort();
     expect(prefixes).toEqual(['71', '72', '73', '74', '75', '76', '77', '78']);
+  });
+
+  it('maps every governorate to exactly one prefix', () => {
+    // Governorate area codes, cross-checked against official office numbers.
+    const expected: Record<string, string> = {
+      Gabès: '75',
+      Médenine: '75',
+      Tataouine: '75',
+      Kebili: '75',
+      Gafsa: '76',
+      Tozeur: '76',
+      'Sidi Bouzid': '76',
+      Kairouan: '77',
+      Kasserine: '77'
+    };
+    const all = LANDLINE_REGIONS.flatMap((r) => r.governorates.map((g) => [g, r.prefix]));
+    expect(all).toHaveLength(24);
+    expect(new Set(all.map(([g]) => g)).size).toBe(24);
+    for (const [governorate, prefix] of Object.entries(expected)) {
+      expect(all.find(([g]) => g === governorate)?.[1], governorate).toBe(prefix);
+    }
   });
 
   it('each region has French and Arabic names', () => {

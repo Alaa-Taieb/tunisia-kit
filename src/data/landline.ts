@@ -38,21 +38,21 @@ export const LANDLINE_REGIONS = freezeRecords<LandlineRegion>([
   },
   {
     prefix: '75',
-    name_fr: 'Sud-Ouest',
-    name_ar: 'الجنوب الغربي',
-    governorates: ['Gafsa', 'Tozeur', 'Kebili']
+    name_fr: 'Sud',
+    name_ar: 'الجنوب',
+    governorates: ['Gabès', 'Médenine', 'Tataouine', 'Kebili']
   },
   {
     prefix: '76',
-    name_fr: 'Sud-Est',
-    name_ar: 'الجنوب الشرقي',
-    governorates: ['Gabès', 'Médenine', 'Tataouine']
+    name_fr: 'Sud-Ouest',
+    name_ar: 'الجنوب الغربي',
+    governorates: ['Gafsa', 'Tozeur', 'Sidi Bouzid']
   },
   {
     prefix: '77',
     name_fr: 'Centre-Ouest',
     name_ar: 'الوسط الغربي',
-    governorates: ['Kairouan', 'Kasserine', 'Sidi Bouzid']
+    governorates: ['Kairouan', 'Kasserine']
   },
   {
     prefix: '78',

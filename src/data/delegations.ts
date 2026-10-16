@@ -1,6 +1,7 @@
 import { freezeRecords } from '../internal/freeze.js';
 /**
- * Tunisian administrative delegations (Délégations).
+ * Tunisian administrative delegations (Délégations), checked against the
+ * Institut National de la Statistique 2024 census list (279 delegations).
  * Each governorate is divided into multiple delegations.
  */
 import { GOVERNORATES, type Governorate } from './governorates.js';
@@ -18,14 +19,15 @@ export const DELEGATIONS = freezeRecords<Delegation>([
   { id: 'tn-01-tunis-ville', governorate_id: 1, name_fr: 'Tunis Ville', name_ar: 'مدينة تونس' },
   { id: 'tn-01-le-bardo', governorate_id: 1, name_fr: 'Le Bardo', name_ar: 'باردو' },
   { id: 'tn-01-la-goulette', governorate_id: 1, name_fr: 'La Goulette', name_ar: 'حلق الوادي' },
-  { id: 'tn-01-carthage', governorate_id: 1, name_fr: 'Carthage', name_ar: 'قرطاج' },
-  { id: 'tn-01-la-marsa', governorate_id: 1, name_fr: 'La Marsa', name_ar: 'المرسى' },
   {
-    id: 'tn-01-sidi-bou-said',
+    id: 'tn-01-carthage',
     governorate_id: 1,
-    name_fr: 'Sidi Bou Said',
-    name_ar: 'سيدي بوسعيد'
+    name_fr: 'Carthage',
+    name_ar: 'قرطاج',
+    // Sidi Bou Said is a sector (imada) of Carthage, not a delegation.
+    aliases: ['Sidi Bou Said', 'سيدي بوسعيد']
   },
+  { id: 'tn-01-la-marsa', governorate_id: 1, name_fr: 'La Marsa', name_ar: 'المرسى' },
   { id: 'tn-01-el-omrane', governorate_id: 1, name_fr: 'El Omrane', name_ar: 'العمران' },
   {
     id: 'tn-01-el-omrane-superieur',
@@ -56,6 +58,7 @@ export const DELEGATIONS = freezeRecords<Delegation>([
   },
   { id: 'tn-01-bab-el-bhar', governorate_id: 1, name_fr: 'Bab El Bhar', name_ar: 'باب البحر' },
   { id: 'tn-01-bab-souika', governorate_id: 1, name_fr: 'Bab Souika', name_ar: 'باب سويقة' },
+  { id: 'tn-01-le-kram', governorate_id: 1, name_fr: 'Le Kram', name_ar: 'الكرم' },
 
   // Ariana (2)
   {
@@ -104,10 +107,17 @@ export const DELEGATIONS = freezeRecords<Delegation>([
     name_ar: 'المروج',
     aliases: ['Mourouj']
   },
+  { id: 'tn-03-mohamedia', governorate_id: 3, name_fr: 'Mohamedia', name_ar: 'المحمدية' },
 
   // Manouba (4)
-  { id: 'tn-04-manouba', governorate_id: 4, name_fr: 'Manouba', name_ar: 'منوبة' },
-  { id: 'tn-04-den-den', governorate_id: 4, name_fr: 'Den Den', name_ar: 'الدندان' },
+  {
+    id: 'tn-04-manouba',
+    governorate_id: 4,
+    name_fr: 'Manouba',
+    name_ar: 'منوبة',
+    // Den Den is a sector (imada) of Manouba, not a delegation.
+    aliases: ['Den Den', 'الدندان']
+  },
   { id: 'tn-04-douar-hicher', governorate_id: 4, name_fr: 'Douar Hicher', name_ar: 'دوار هيشر' },
   { id: 'tn-04-oued-ellil', governorate_id: 4, name_fr: 'Oued Ellil', name_ar: 'وادي الليل' },
   { id: 'tn-04-tebourba', governorate_id: 4, name_fr: 'Tebourba', name_ar: 'طبربة' },
@@ -146,7 +156,7 @@ export const DELEGATIONS = freezeRecords<Delegation>([
     id: 'tn-05-hammam-ghezaz',
     governorate_id: 5,
     name_fr: 'Hammam Ghezaz',
-    name_ar: 'حمام الغزاز'
+    name_ar: 'حمام الأغزاز'
   },
 
   // Zaghouan (6)
@@ -181,6 +191,7 @@ export const DELEGATIONS = freezeRecords<Delegation>([
   { id: 'tn-07-utique', governorate_id: 7, name_fr: 'Utique', name_ar: 'أوتيك' },
   { id: 'tn-07-ghar-el-melh', governorate_id: 7, name_fr: 'Ghar El Melh', name_ar: 'غار الملح' },
   { id: 'tn-07-el-alia', governorate_id: 7, name_fr: 'El Alia', name_ar: 'العالية' },
+  { id: 'tn-07-zarzouna', governorate_id: 7, name_fr: 'Zarzouna', name_ar: 'جرزونة' },
 
   // Béja (8)
   { id: 'tn-08-beja-nord', governorate_id: 8, name_fr: 'Béja Nord', name_ar: 'باجة الشمالية' },
@@ -236,6 +247,7 @@ export const DELEGATIONS = freezeRecords<Delegation>([
   { id: 'tn-10-ksour', governorate_id: 10, name_fr: 'Ksour', name_ar: 'القصور' },
   { id: 'tn-10-dahmani', governorate_id: 10, name_fr: 'Dahmani', name_ar: 'الدهماني' },
   { id: 'tn-10-sers', governorate_id: 10, name_fr: 'Sers', name_ar: 'السرس' },
+  { id: 'tn-10-touiref', governorate_id: 10, name_fr: 'Touiref', name_ar: 'الطويرف' },
 
   // Siliana (11)
   {
@@ -281,7 +293,7 @@ export const DELEGATIONS = freezeRecords<Delegation>([
     name_ar: 'سوسة سيدي عبد الحميد'
   },
   { id: 'tn-12-hammam-sousse', governorate_id: 12, name_fr: 'Hammam Sousse', name_ar: 'حمام سوسة' },
-  { id: 'tn-12-akouda', governorate_id: 12, name_fr: 'Akouda', name_ar: 'عكودة' },
+  { id: 'tn-12-akouda', governorate_id: 12, name_fr: 'Akouda', name_ar: 'أكودة' },
   {
     id: 'tn-12-kalaa-kebira',
     governorate_id: 12,
@@ -350,6 +362,8 @@ export const DELEGATIONS = freezeRecords<Delegation>([
   { id: 'tn-14-mellouleche', governorate_id: 14, name_fr: 'Melloulèche', name_ar: 'ملولش' },
   { id: 'tn-14-sidi-alouane', governorate_id: 14, name_fr: 'Sidi Alouane', name_ar: 'سيدي علوان' },
   { id: 'tn-14-ksour-essef', governorate_id: 14, name_fr: 'Ksour Essef', name_ar: 'قصور الساف' },
+  { id: 'tn-14-rejiche', governorate_id: 14, name_fr: 'Rejiche', name_ar: 'رجيش' },
+  { id: 'tn-14-el-bradaa', governorate_id: 14, name_fr: 'El Bradaa', name_ar: 'البرادعة' },
 
   // Sfax (15)
   { id: 'tn-15-sfax-ville', governorate_id: 15, name_fr: 'Sfax Ville', name_ar: 'مدينة صفاقس' },
@@ -406,6 +420,13 @@ export const DELEGATIONS = freezeRecords<Delegation>([
   { id: 'tn-16-nasrallah', governorate_id: 16, name_fr: 'Nasrallah', name_ar: 'نصر الله' },
   { id: 'tn-16-cherarda', governorate_id: 16, name_fr: 'Cherarda', name_ar: 'الشراردة' },
   { id: 'tn-16-bou-hajla', governorate_id: 16, name_fr: 'Bou Hajla', name_ar: 'بوحجلة' },
+  { id: 'tn-16-ain-jeloula', governorate_id: 16, name_fr: 'Ain Jeloula', name_ar: 'عين جلولة' },
+  {
+    id: 'tn-16-menzel-mhiri',
+    governorate_id: 16,
+    name_fr: 'Menzel Mhiri',
+    name_ar: 'منزل المهيري'
+  },
 
   // Kasserine (17)
   {
@@ -432,7 +453,7 @@ export const DELEGATIONS = freezeRecords<Delegation>([
   { id: 'tn-17-jedeliane', governorate_id: 17, name_fr: 'Jedeliane', name_ar: 'جدليان' },
   { id: 'tn-17-el-ayoun', governorate_id: 17, name_fr: 'El Ayoun', name_ar: 'العيون' },
   { id: 'tn-17-thala', governorate_id: 17, name_fr: 'Thala', name_ar: 'تالة' },
-  { id: 'tn-17-hidra', governorate_id: 17, name_fr: 'Hidra', name_ar: 'هيدرة' },
+  { id: 'tn-17-hidra', governorate_id: 17, name_fr: 'Hidra', name_ar: 'حيدرة' },
   { id: 'tn-17-foussana', governorate_id: 17, name_fr: 'Foussana', name_ar: 'فوسانة' },
   { id: 'tn-17-feriana', governorate_id: 17, name_fr: 'Feriana', name_ar: 'فريانة' },
   {
@@ -485,6 +506,8 @@ export const DELEGATIONS = freezeRecords<Delegation>([
     name_fr: 'Ouled Haffouz',
     name_ar: 'أولاد حفوز'
   },
+  { id: 'tn-18-essaida', governorate_id: 18, name_fr: 'Essaida', name_ar: 'السعيدة' },
+  { id: 'tn-18-el-hichria', governorate_id: 18, name_fr: 'El Hichria', name_ar: 'الهيشرية' },
 
   // Gabès (19)
   { id: 'tn-19-gabes-ville', governorate_id: 19, name_fr: 'Gabès Ville', name_ar: 'مدينة قابس' },
@@ -506,6 +529,19 @@ export const DELEGATIONS = freezeRecords<Delegation>([
     governorate_id: 19,
     name_fr: 'Menzel El Habib',
     name_ar: 'منزل الحبيب'
+  },
+  {
+    id: 'tn-19-dkhilet-toujane',
+    governorate_id: 19,
+    name_fr: 'Dkhilet Toujane',
+    name_ar: 'دخيلة توجان'
+  },
+  { id: 'tn-19-oudhref', governorate_id: 19, name_fr: 'Oudhref', name_ar: 'وذرف' },
+  {
+    id: 'tn-19-el-hamma-ouest',
+    governorate_id: 19,
+    name_fr: 'El Hamma Ouest',
+    name_ar: 'الحامة الغربية'
   },
 
   // Médenine (20)
@@ -562,6 +598,7 @@ export const DELEGATIONS = freezeRecords<Delegation>([
   { id: 'tn-21-ghomrassen', governorate_id: 21, name_fr: 'Ghomrassen', name_ar: 'غمراسن' },
   { id: 'tn-21-dhehiba', governorate_id: 21, name_fr: 'Dhehiba', name_ar: 'ذهيبة' },
   { id: 'tn-21-remada', governorate_id: 21, name_fr: 'Remada', name_ar: 'رمادة' },
+  { id: 'tn-21-beni-mhira', governorate_id: 21, name_fr: 'Beni Mhira', name_ar: 'بني مهيرة' },
 
   // Gafsa (22)
   { id: 'tn-22-gafsa-nord', governorate_id: 22, name_fr: 'Gafsa Nord', name_ar: 'قفصة الشمالية' },
@@ -580,6 +617,13 @@ export const DELEGATIONS = freezeRecords<Delegation>([
   { id: 'tn-22-el-guettar', governorate_id: 22, name_fr: 'El Guettar', name_ar: 'القطار' },
   { id: 'tn-22-belkhir', governorate_id: 22, name_fr: 'Belkhir', name_ar: 'بلخير' },
   { id: 'tn-22-sned', governorate_id: 22, name_fr: 'Sned', name_ar: 'السند' },
+  {
+    id: 'tn-22-sidi-boubaker',
+    governorate_id: 22,
+    name_fr: 'Sidi Boubaker',
+    name_ar: 'سيدي بوبكر'
+  },
+  { id: 'tn-22-zannouch', governorate_id: 22, name_fr: 'Zannouch', name_ar: 'زانوش' },
 
   // Tozeur (23)
   { id: 'tn-23-tozeur', governorate_id: 23, name_fr: 'Tozeur', name_ar: 'توزر' },
@@ -587,6 +631,12 @@ export const DELEGATIONS = freezeRecords<Delegation>([
   { id: 'tn-23-tameghza', governorate_id: 23, name_fr: 'Tameghza', name_ar: 'تمغزة' },
   { id: 'tn-23-nefta', governorate_id: 23, name_fr: 'Nefta', name_ar: 'نفطة' },
   { id: 'tn-23-hazoua', governorate_id: 23, name_fr: 'Hazoua', name_ar: 'حزوة' },
+  {
+    id: 'tn-23-hamma-du-jerid',
+    governorate_id: 23,
+    name_fr: 'Hamma du Jerid',
+    name_ar: 'حامة الجريد'
+  },
 
   // Kebili (24)
   { id: 'tn-24-kebili-nord', governorate_id: 24, name_fr: 'Kebili Nord', name_ar: 'قبلي الشمالية' },
@@ -594,7 +644,8 @@ export const DELEGATIONS = freezeRecords<Delegation>([
   { id: 'tn-24-souk-lahad', governorate_id: 24, name_fr: 'Souk Lahad', name_ar: 'سوق الأحد' },
   { id: 'tn-24-douz-nord', governorate_id: 24, name_fr: 'Douz Nord', name_ar: 'دوز الشمالية' },
   { id: 'tn-24-douz-sud', governorate_id: 24, name_fr: 'Douz Sud', name_ar: 'دوز الجنوبية' },
-  { id: 'tn-24-faouar', governorate_id: 24, name_fr: 'Faouar', name_ar: 'الفوار' }
+  { id: 'tn-24-faouar', governorate_id: 24, name_fr: 'Faouar', name_ar: 'الفوار' },
+  { id: 'tn-24-rjim-maatoug', governorate_id: 24, name_fr: 'Rjim Maatoug', name_ar: 'رجيم معتوق' }
 ]);
 
 /** Return immutable records for a governorate (unknown IDs yield []). */
